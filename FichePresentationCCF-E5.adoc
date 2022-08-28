@@ -1,0 +1,59 @@
+= Fiche de présentation CCF-E5
+Bauer Baptiste <cours.bauer@gmail.com> 
+:description: Fiche de présentation CCF-E5. 
+:sectanchors: 
+:url-repo: https://github.com/BTS-SIO2
+
+== CCF : Contrôle en cours de formation
+
+[example]
+====
+**Épreuve E5 (coefficient 4)**
+
+**Administration des systèmes et des réseaux (option SISR)**
+
+**Conception et développement d’applications (option SLAM)**
+====
+
+
+=== Prérequis :
+* Présenter deux réalisations professionnelles élaborées dans un environnement technologique conforme à l’annexe II.E du référentiel.
+* Dossier numérique constitué des fiches descriptives des deux réalisations professionnelles.
+
+=== Déroulement de l’épreuve (2h10 maxi) :
+* L'évaluation est guidée par une grille nationale.
+* La commission choisit une réalisation professionnelle et définit de nouveaux besoins (modification, évolution, etc..).
+* Au cours de l’épreuve, la personne candidate est autorisée à utiliser les ressources électroniques disponibles dans le centre d’examen, y compris les services accessibles en ligne, à l’exception de tout service de communication synchrone ou asynchrone avec un tiers.
+
+L’épreuve se déroule en 4 étapes :
+
+* Préparation par le candidat d'une solution sur table (30 min)
+* Phase 1 : Entretien d’explicitation avec la commission (20 min maxi).
+* Réalisation des objectifs par le candidat sur l’environnement technologique (1h).
+* Phase 2 : Recette de la solution par la commission (20 min maxi).
+
+=== Pénalités : 
+**10 points :** Absence d’une réalisation professionnelle.
+
+**20 points :** Absence de deux réalisations professionnelles.
+
+**15 points :** Environnement technologique mis en œuvre non conforme à l’annexe II.E.
+
+
+=== Compétences évaluées :
+
+* Option SISR :
+    ** Concevoir une solution d’infrastructure réseau
+	** Installer, tester et déployer une solution d’infrastructure réseau
+	** Exploiter, dépanner et superviser une solution d’infrastructure réseau
+
+
+* Option SLAM :
+	** Concevoir et développer une solution applicative
+	** Assurer la maintenance corrective ou évolutive d’une solution applicative
+	** Gérer les données
+
+=== Conformité pour être convoqué :
+ 
+Déposer le dossier décrivant les deux réalisations professionnelles à la date spécifiée par l’équipe pédagogique.
+
