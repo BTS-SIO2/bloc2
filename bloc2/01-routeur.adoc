@@ -1,11 +1,13 @@
 = Le routeur et la table de routage
 Bauer Baptiste <cours.bauer@gmail.com> 
 :description: Révision BLOC 2. 
+:icons: font
 :keywords: révisions, routeur, table de routage
 :sectanchors: 
 :url-repo: https://github.com/BTS-SIO2
 :chapter-number: number
 :sectnums:
+:toc:
 
 == Communication entre réseau `IP`
 
