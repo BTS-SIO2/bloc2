@@ -3,13 +3,20 @@
 == Semaine 2
 === Le 05 septembre 2022 : `08h00 à 12h00`
 
-Correction des exercices de révision sur les tables de routage
+* Correction des exercices de révision sur les tables de routage
 
+* Rappel sur le masque /30, passerelle par défaut (impossible de joindre l’hôte), la route par défaut (Internet), protocole NAT.
+
+* TP Cisco Packet Tracer sur le routage (`TP/Tpcisco/Routage/Tp1-labo-routage.pka`).
 ****
 *Documents* :
 
 * link:./bloc2/01-partageInternet.adoc[Cours : 01-partageInternet.adoc]
 * link:./bloc2/01-partageInternet.ppt[PowerPoint : 01-partageInternet.ppt]
+* link:./TP/Tpcisco/Routage/Tp1-labo-routage.pka[Packet Tracer : Tp1-labo-routage.pka]
+* link:./TP/Tpcisco/Routage/Tp1-cisco_routage.adoc[Tp1-cisco_routage.adoc]
+* link:./TP/Tpcisco/Routage/Tp1-cisco_routage-tables.adoc[Tp1-cisco_routage-tables.adoc]
+* link:./TP/Tpcisco/modesOpératoires/04-CiscoModeOperatoireRouteur.adoc[04-CiscoModeOperatoireRouteur.adoc]
 ****
 
 == Semaine 1

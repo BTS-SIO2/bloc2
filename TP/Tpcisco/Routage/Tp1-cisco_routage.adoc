@@ -13,7 +13,7 @@ Bauer Baptiste <cours.bauer@gmail.com>
 ====
 *Documents à utiliser :*
 
-* Réseau Packet Tracer `labo-routage.pka`
+* Réseau Packet Tracer `Tp1-labo-routage.pka`
 * `04-CiscoModeOperatoireRouteur.pdf`
 
 ====
@@ -24,7 +24,7 @@ L’objectif de ce labo est de mettre en place une communication entre trois ré
 
 == Mise en place avec Packet Tracer
 
-Avec Packet Tracer, ouvrir le fichier `labo-routage.pka`.
+Avec Packet Tracer, ouvrir le fichier `Tp1-labo-routage.pka`.
 
 image::img/cisco_routage-tables-02.png["Schéma réseau", align="center"]
 

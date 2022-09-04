@@ -27,8 +27,8 @@ ifdef::correction[]
 | Classe | Plage IP | Nbr de réseaux
 
 | Classe A | 10.0.0.0 | (1 réseau)
-| Classe A | 172.16.0.0 à 172.31.0.0 | (16 réseaux)
-| Classe A | 192.168.0.0 à 192.168.0.0 | (256 réseaux)
+| Classe B | 172.16.0.0 à 172.31.0.0 | (16 réseaux)
+| Classe C | 192.168.0.0 à 192.168.0.0 | (256 réseaux)
 
 |===
 endif::[]
@@ -39,8 +39,8 @@ ifndef::correction[]
 | Classe | Plage IP | Nbr de réseaux
 
 | Classe A |  |
-| Classe A |  |
-| Classe A |  |
+| Classe B |  |
+| Classe C |  |
 
 |===
 endif::[]
