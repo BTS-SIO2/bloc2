@@ -13,8 +13,6 @@ Bauer Baptiste <cours.bauer@gmail.com>
 
 == Introduction
 
-
-
 [NOTE]
 ====
 Des plages d'adresses Ip (privées) sont réservées pour les réseaux locaux et ne sont pas *routable* sur Internet.
@@ -49,31 +47,53 @@ endif::[]
 
 Quelle que soit la méthode utilisée, l'accès Internet nécessite de posséder une adresse IP publique pour communiquer sur ce réseau.
 
-****
-[quanta]
-Comment obtenir une adresse IP publique ?::
+[.question]
+**
+Question {counter:question} :
+Comment obtenir une adresse IP publique ?
+**
+
 ifdef::correction[]
+[.reponse]
+**
+Réponse {counter:reponse} :
 Cette adresse est attribuée par le FAI (Fournisseur d'accès à Internet).
+**
 endif::[]
-****
+
 
 Dans une entreprise, toutes les stations du réseau local devraient donc disposer d'une adresse publique afin de pouvoir naviguer sur Internet.
 
-****
-[quanta]
-Inconvénients de cette méthode pour l'entreprise ?::
-ifdef::correction[]
-Manque d'adresses IP, coût d'achat des adresses publiques, sécurité du réseau local.
-endif::[]
-****
+[.question]
+**
+Question {counter:question} :
+Inconvénients de cette méthode pour l'entreprise ?
+**
 
-****
-[quanta]
-La solution ?::
 ifdef::correction[]
-Toutes les stations de l'entreprise partagent la même adresse IP publique.
+[.reponse]
+**
+Réponse {counter:reponse} :
+Manque d'adresses IP, coût d'achat des adresses publiques, sécurité du réseau local.
+**
 endif::[]
-****
+
+
+[.question]
+**
+Question {counter:question} :
+La solution ?
+**
+
+ifdef::correction[]
+[.reponse]
+**
+Réponse {counter:reponse} :
+Toutes les stations de l'entreprise partagent la même adresse IP publique.
+**
+endif::[]
+
+
 
 Dans la plupart des réseaux d'entreprise, l'accès Internet s'effectue soit par le biais d'un routeur avec la fonction de *NAT (Network Address Translation)*, soit par le biais d'un *serveur Proxy* (*serveur mandataire*).
 

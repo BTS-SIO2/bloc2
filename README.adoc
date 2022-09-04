@@ -1,13 +1,29 @@
-= Cahier de texte SIO2 - année 2022/2023
+= Cahier de texte SIO2 - [2022/2023]
+
+== Semaine 2
+=== Le 05 septembre 2022 : `08h00 à 12h00`
+
+Correction des exercices de révision sur les tables de routage
+
+****
+*Documents* :
+
+* link:./bloc2/01-partageInternet.adoc[Cours : 01-partageInternet.adoc]
+* link:./bloc2/01-partageInternet.ppt[PowerPoint : 01-partageInternet.ppt]
+****
 
 == Semaine 1
-=== vendredi 01/09/2022 
+=== Le 02 septembre 2022
 
 Révision sur le routage
 
-* Cours : Le routeur et la table de routage. 
-* Exercice : Complétez les tables de routage.
+* *Cours* : Le routeur et la table de routage.
+* *Exercice* : Complétez les tables de routage.
 
-document : bloc2/01-routeur.adoc[01-routeur.adoc]
+****
+*Documents* :
 
-link:../bloc2/01-routeur.adoc[]
+* link:./bloc2/01-routeur.adoc[Cours : 01-routeur.adoc]
+* link:./bloc2/01-routeur.ppt[PowerPoint : 01-routeur.ppt]
+****
+

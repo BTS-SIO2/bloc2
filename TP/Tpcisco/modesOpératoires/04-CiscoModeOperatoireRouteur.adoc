@@ -1,0 +1,281 @@
+= Configuration de base d’un routeur Cisco 2901
+Bauer Baptiste <cours.bauer@gmail.com>
+:description: Mode opératoire
+:icons: font
+:keywords: Packet Tracer, cisco, routeur, mode opératoire
+:sectanchors:
+:url-repo: https://github.com/BTS-SIO2
+:chapter-number: number
+:sectnums:
+:toc:
+:experimental :
+
+== Configuration de base du routeur
+
+* Mise en route du routeur Cisco :
+|===
+|Commande | Descriptif
+
+|kbd:[enable]
+|Pour accéder au mode privilège : `#`
+
+|kbd:[conf  t]
+|Pour accéder au mode configuration : `(config)#`
+
+|kbd:[enable password]
+|Pour changer le mot de passe
+
+|kbd:[hostname]
+|Pour changer le nom du routeur
+
+|kbd:[exit]
+|Pour revenir en mode privilège : `#`
+
+|kbd:[sh run]
+|Pour voir la configuration active du routeur
+
+|kbd:[sh start]
+|Pour voir la configuration de démarrage du routeur
+|===
+
+== Configuration IP des interfaces du routeur
+
+* Configuration d’une interface Ethernet :
+|===
+|Commande | Descriptif
+
+|kbd:[conf t]
+|Pour accéder au mode configuration : `(config)#`
+
+|kbd:[int g0/0]
+|Pour accéder à la configuration de l’interface réseau *g0/0* : `(config-if)#`
+
+|kbd:[ip address <ip> <masque>]
+|Pour définir l’adresse IP
+
+|kbd:[no shutdown]
+|Pour activer l’interface
+
+|kbd:[exit]
+|Pour revenir en mode privilège : `#`
+|===
+
+* Configuration d’une interface série (connectée à l’autre routeur, `s0/0/0` ou `s0/0/1`) :
+
+[NOTE]
+Vérifier le numéro de l’interface avec le câblage (`s0` ou `s1`).
+
+|===
+|Commande | Descriptif
+
+|kbd:[conf t]
+|Pour accéder au mode configuration : `(config)#`
+
+|kbd:[int s0/0/0]
+|Pour accéder à la configuration de *s0/0/0* : `(config-if)#`
+
+|kbd:[ip address <ip> <masque>]
+|Pour définir l’adresse IP
+
+|kbd:[clock rate 128000]
+|Voir la note
+
+|kbd:[no shutdown]
+|Pour activer l’interface
+
+|kbd:[exit]
+|Pour revenir en mode privilège : `#`
+
+|===
+
+[NOTE]
+kbd:[clock rate 128000]
+simule une connexion à un réseau WAN (réseau étendu) sur les interfaces séries. Elle ne doit être saisie que si le connecteur du câble est spécifié DCE (Equipement de circuit de données).
+
+Dans le labo GSB, tous les connecteurs DCE sont branchés sur les interfaces du routeur FAI.
+
+* Supprimer l’adresse IP d’une interface Ethernet :
+
+|===
+|Commande | Descriptif
+
+|kbd:[conf t]
+|Pour accéder au mode configuration : `(config)#`
+
+|kbd:[int g0/0]
+|Pour accéder à la configuration de l’interface réseau *g0/0* : `(config-if)#`
+
+|kbd:[no ip address]
+|Pour supprimer l’adresse IP
+
+|kbd:[exit]
+|Pour revenir en mode privilège : `#`
+
+|===
+
+== Test et affichage de la configuration IP du routeur
+
+* Afficher la configuration saisie sur le routeur :
+** kbd:[show run] pour afficher la configuration active du routeur.
+* Test des connexions à partir du routeur :
+** kbd:[ping <IpPoste>] ou kbd:[<IpRouteurSuivant>] pour tester la connexion IP.
+* Vérifier la configuration IP des interfaces :
+** kbd:[show ip interface brief] pour voir un état récapitulatif des interfaces
+
+* Vérifier la configuration IP d’une interface :
+** kbd:[show ip interface g0/0] pour voir un état complet de l’interface g0/0
+
+* Vérifier la configuration des interfaces :
+** kbd:[show interfaces] pour voir un état complet des interfaces
+
+== Configuration de la table de routage du routeur
+
+* Ajouter une route statique dans la table de routage :
+
+|===
+|Commande | Descriptif
+
+|kbd:[conf  t]
+|Pour accéder au mode configuration : `(config)#`
+
+|kbd:[no ip address <AdresseReseau> <masque> <AdressePasserelle ou interface>]
+|Pour supprimer l’adresse IP
+
+|kbd:[exit]
+|Pour revenir en mode privilège : `#`
+
+|===
+
+== Afficher la table de routage
+
+* Afficher toute la table de routage :
+** kbd:[sh ip route] pour afficher la table de routage
+
+* Afficher seulement les routes statiques de la table de routage :
+** kbd:[sh ip route static] pour afficher les routes statiques
+
+* Afficher seulement les routes directement connectées de la table de routage :
+** kbd:[sh ip route connected] pour afficher la table de routage
+
+* Afficher seulement les routes dynamiques du protocole RIP de la table de routage:
+** kbd:[sh ip route rip] pour afficher les routes dynamiques RIP
+
+[NOTE]
+====
+* Les routes *statiques* sont précédées d’un *S*.
+* Les routes directement *connectées* au routeur sont précédées d’un *C*.
+* Les routes dynamiques définies via le protocole *RIP* sont précédées d’un *R*.
+* Les routes dynamiques définies via le protocole *OSPF* sont précédées d’un *D*.
+
+====
+
+== Configurer le service DHCP
+
+* Exclure des adresses IP de l’attribution *DHCP* :
+
+|===
+|Commande | Descriptif
+
+|kbd:[conf  t]
+|Pour accéder au mode configuration : `(config)#`
+
+|kbd:[ip dhcp excluded-address <adresseDebut> <AdresseFin>]
+|Pour exclure une plage d’adresses
+
+|===
+
+* Configuration d’un pool d’adresses *DHCP* :
+
+|===
+|Commande | Descriptif
+
+|kbd:[ip dhcp pool pool-name]
+|Crée un pool avec un nom et place le routeur en mode  `(dhcp-config)#`
+
+|kbd:[network <IPduReseau> <Masque>]
+|Pour définir la plage d'adresses disponibles.
+
+|kbd:[default-router <IPPasserelleDefaut>]
+|Pour définir l’adresse IP de la passerelle par défaut.
+
+|kbd:[dns-server <IPServeurDNS>]
+|Pour définir l’adresse IP du serveur DNS.
+
+|kbd:[domain-name <Nomdomaine>]
+|Pour définir le nom de domaine.
+
+|kbd:[end]
+|Pour revenir en mode privilège : `#`
+
+|===
+
+[NOTE]
+====
+La durée du bail *DHCPv4* peut être modifiée à l'aide de la commande `lease`. La durée par défaut du bail s'élève à un jour.
+
+Les autres options *DHCP* peuvent être configurées avec la commande option.
+
+====
+
+* Désactiver le service DHCP :
+
+|===
+|Commande | Descriptif
+
+|kbd:[conf  t]
+|Pour accéder au mode configuration : (config)#
+
+|kbd:[no service dhcp]
+|Pour désactiver le service DHCP
+|===
+
+* Afficher des informations sur le service DHCP :
+
+|===
+|Commande | Descriptif
+
+|kbd:[show ip dhcp binding]
+|Permet d'afficher la liste de toutes les liaisons entre adresse IPv4 et adresse MAC qui ont été fournies par le service DHCPv4.
+
+|kbd:[show ip dhcp server statistics]
+|Sert à vérifier que les messages sont reçus ou envoyés par le routeur. Cette commande permet d'afficher le nombre de messages DHCPv4 envoyés et reçus.
+
+|kbd:[show ip dhcp conflict]
+|Affiche tous les conflits d'adresses enregistrés par le serveur DHCPv4.
+|===
+
+== Configurer l’agent relais DHCP sur une interface du routeur
+
+* Activer l’agent relais DHCP sur une interface du routeur :
+
+|===
+|Commande | Descriptif
+
+|kbd:[conf  t]
+|Pour accéder au mode configuration : `(config)#`
+
+|kbd:[int g0/0]
+|Pour accéder à la configuration de l’interface réseau g0/0 : `(config-if)#`
+
+|kbd:[ip helper-address AdresseIPServeurDHCP]
+|Pour spécifier l'adresse IP du serveur DHCPv4
+
+|kbd:[end]
+|Pour revenir en mode privilège : `#`
+|===
+
+== Configurer le routeur comme client DHCP
+
+* Activer la configuration dynamique DHCP sur une interface du routeur :
+
+|===
+|Commande | Descriptif
+
+|kbd:[conf  t] | Pour accéder au mode configuration : `(config)#`
+|kbd:[int g0/0] | Pour accéder à la configuration de l’interface réseau g0/0 : `(config-if)#`
+|kbd:[ip address dhcp] | Pour demander une adresse IP à un serveur DHCPv4
+|kbd:[end] | Pour revenir en mode privilège : `#`
+|===
+
+* Afficher les informations de l’interface :
+** kbd:[show ip interface g0/1] confirme que l'interface est activée et que l'adresse a été attribuée par un serveur DHCPv4.
