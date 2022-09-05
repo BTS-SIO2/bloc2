@@ -1,0 +1,53 @@
+= Remettre la configuration d'un commutateur à Zéro
+Bauer Baptiste <cours.bauer@gmail.com>
+:description: Mode opératoire
+:icons: font
+:keywords: Packet Tracer, cisco, switch, mode opératoire
+:sectanchors:
+:url-repo: https://github.com/BTS-SIO2
+:chapter-number: number
+:sectnums:
+:toc:
+:experimental :
+
+== Remettre la config d’un switch à zéro en mode CLI
+
+[source,bash]
+----
+SW1# erase startup-config		ou 	SW1# erase nvram:
+SW1# delete flash:vlan.dat
+SW1# reload
+----
+
+== Remettre la config d’un switch à zéro avec le bouton Mode
+
+La méthode qui suit semble être valable pour les switches relativement récents (`IOS >= 12.1(14)EA1`) et possédant un bouton kbd:[Mode].
+
+=== La méthode
+
+Quand le switch est en fonctionnement, appuyez sur le bouton kbd:[Mode] et maintenez enfoncé pendant *+/- 10 secondes*.
+
+Vous noterez que dans un premier temps les *leds* système `etc` clignotent et finissent par se figer.
+
+À ce moment-là *relâchez* : la configuration sera remise à zéro et le switch redémarrera.
+
+A l’origine, il s’agit d’une fonctionnalité permettant d’accéder à la configuration du switch par un port *ethernet* via un navigateur.
+
+En réalité le switch passe en mode `express setup`, se configure l’adresse ip `10.0.0.1` sur l’interface `VLAN1` et active son serveur `DHCP` pour fournir une config à un éventuel client.
+
+Pour fonctionner, le switch ne peut avoir de config active … c’est la raison pour laquelle il s’en débarrasse au lancement de la méthode.
+
+Pratique ! quand on ne sait pas comment accéder au CLI par le port console … mais surtout … dangereux dans un environnement en production !
+
+Donc à désactiver en mode *production* !
+
+A priori, sont concernés les `29xx`, `35xx` et `37xx`.
+
+== Désactiver l’express setup (En mode production)
+
+[source,bash]
+----
+SW1(config)# no express setup
+----
+
+À noter que cela ne désactive pas le service de _password recovery_ que l’on lance en gardant le bouton kbd:[mode] enfoncé tout en débranchant et rebranchant l’alimentation du switch.

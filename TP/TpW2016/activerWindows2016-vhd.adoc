@@ -1,6 +1,6 @@
 = Procédure d'activation Windows2016 sur le disque VHD.
 Bauer Baptiste <cours.bauer@gmail.com>
-:description: TP Packet Tracer.
+:description: Windows 2016 Server.
 :icons: font
 :keywords: révisions, routeur, table de routage, TP, Packet Tracer
 :sectanchors:
@@ -8,7 +8,7 @@ Bauer Baptiste <cours.bauer@gmail.com>
 :chapter-number: number
 :sectnums:
 :toc:
-:experimental :
+:experimental:
 
 . Démarrer sur Windows 10 SIO
 . Enlever `lecture seule` sur le fichier `c:\disquevhd\win2016base.vhd`

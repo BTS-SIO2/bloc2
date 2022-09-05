@@ -7,6 +7,7 @@ Bauer Baptiste <cours.bauer@gmail.com>
 :url-repo: https://github.com/BTS-SIO2
 :chapter-number: number
 :sectnums:
+:sectnumlevels: 4
 :toc:
 :experimental :
 

@@ -13,9 +13,9 @@
 
 * link:./bloc2/01-partageInternet.adoc[Cours : 01-partageInternet.adoc]
 * link:./bloc2/01-partageInternet.ppt[PowerPoint : 01-partageInternet.ppt]
-* link:./TP/Tpcisco/Routage1/Tp1-labo-routage.pka[Packet Tracer : Tp1-labo-routage.pka]
-* link:./TP/Tpcisco/Routage1/Tp1-cisco_routage.adoc[Tp1-cisco_routage.adoc]
-* link:./TP/Tpcisco/Routage1/Tp1-cisco_routage-tables.adoc[Tp1-cisco_routage-tables.adoc]
+* link:./TP/Tpcisco/Routage1/Tp01-labo-routage.pka[Packet Tracer : Tp1-labo-routage.pka]
+* link:./TP/Tpcisco/Routage1/Tp01-cisco_routage.adoc[Tp1-cisco_routage.adoc]
+* link:./TP/Tpcisco/Routage1/Tp01-cisco_routage-tables.adoc[Tp1-cisco_routage-tables.adoc]
 * link:./TP/Tpcisco/modesOpératoires/04-CiscoModeOperatoireRouteur.adoc[04-CiscoModeOperatoireRouteur.adoc]
 ****
 
