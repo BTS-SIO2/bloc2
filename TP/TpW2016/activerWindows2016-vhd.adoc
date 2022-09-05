@@ -1,0 +1,89 @@
+= Procédure d'activation Windows2016 sur le disque VHD.
+Bauer Baptiste <cours.bauer@gmail.com>
+:description: TP Packet Tracer.
+:icons: font
+:keywords: révisions, routeur, table de routage, TP, Packet Tracer
+:sectanchors:
+:url-repo: https://github.com/BTS-SIO2
+:chapter-number: number
+:sectnums:
+:toc:
+:experimental :
+
+. Démarrer sur Windows 10 SIO
+. Enlever `lecture seule` sur le fichier `c:\disquevhd\win2016base.vhd`
+
+
+
+kbd:[Click droit] => kbd:[Propriétés] =>  kbd:[Lecture seule] à décocher.
+
+[start=3]
+. Se positionner dans le dossier : `C:\AdminBootVHD2016base` à la racine du lecteur `c:\`.
+
+À copier à partir de `\\commun\BAUER\Utilitaires` si nécessaire avant.
+
+[start=4]
+. Créer une nouvelle entrée *Windows2016* avec le script spécifique `add-base.cmd` :
+
+* kbd:[Click droit] sur le script.
+* kbd:[Exécuter en tant qu’administrateur].
+* Saisir les informations du compte administrateur `info` :
+
+** *Login :* _<NomDuPoste>\info_	(exemple *F103-14\info*)
+
+** *Mot de passe :* _info_
+
+[start=5]
+. Rebooter (redémarrer) sur la nouvelle entrée *windows 2016 de base*.
+** *Login :* _Administrateur_
+
+** *Mot de passe :* _Toto01_
+
+[start=6]
+. Action à exécuter :
+
+.. kbd:[Click droit] sur le bouton kbd:[Windows]
+.. Sélectionnez kbd:[Connexions réseau],
+.. Puis kbd:[click droit] sur la carte kbd:[réseau Intel],
+.. Cliquez sur kbd:[Propriétés].
+
+Vérifier que le *DHCP* est activé sur cette carte :
+
+kbd:[Protocole IPv4] => kbd:[Propriétés] =>  kbd:[Obtenir une adresse IP automatiquement] à cocher.
+
+[start=7]
+. Tester la connexion vers la passerelle  : `ping 192.168.200.1`
+. Vérifier/Saisir les paramètres du proxy dans le navigateur : `172.16.0.1`, port `3128`.
+. Vérifier l’activation de Windows2016 : kbd:[Click droit] sur le bouton kbd:[Windows\Système]
+. Changer le nom du serveur pour mettre `Win2016-xx` (`xx` = numéro du PC) :
+
+kbd:[Click droit] sur le bouton kbd:[Windows] \ kbd:[Système] \ kbd:[Modifier les paramètres]
+
+[start=11]
+. Après avoir validé, redémarrer sur la même entrée : *windows 2016 de base*.
+. Modifier la configuration de la carte réseau Intel pour mettre l'adresse IP suivante :
+
+kbd:[Click droit] sur le bouton kbd:[Windows], kbd:[Connexions réseau] : `172.16.0.xx/16` (`xx` = numéro du PC)
+
+[start=13]
+. Modifier la configuration de la carte réseau *Broadcom* pour mettre l'adresse IP  suivante : `10.0.0.xx/8` (`xx` = numéro du PC).
+. Arrêter *Win2016* et redémarrer sur *Windows 10*
+
+[WARNING]
+====
+Remettre le fichier `c:\disquevhd\win2016base.vhd` en kbd:[Lecture seule].
+
+*À effectuer :*
+
+kbd:[Click droit] sur le fichier / kbd:[Propriétés] /Cocher kbd:[Lecture seule].
+
+*Il ne faudra plus jamais modifier cette option, ce fichier doit rester en Lecture seule*.
+====
+
+[start=15]
+. Supprimer le dossier `c:\AdminBootVHD2016base`
+. Se positionner dans le dossier : `C:\AdminBootVHD` à la racine du lecteur `c:\`
+. Supprimer l'entrée *Windows 2016 de base* avec le script *del.cmd* :
+    .. kbd:[Click droit] sur le script, kbd:[Exécuter en tant qu’administrateur]
+    .. Saisir les informations du compte administrateur info (_NomDuPoste\info_)
+    .. Saisir le numéro de l’entrée à *supprimer* et *confirmer*.

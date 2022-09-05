@@ -1,0 +1,50 @@
+= Mise en place du routage N°2
+Bauer Baptiste <cours.bauer@gmail.com>
+:description: TP Packet Tracer.
+:icons: font
+:keywords: révisions, routeur, table de routage, TP, Packet Tracer
+:sectanchors:
+:url-repo: https://github.com/BTS-SIO2
+:chapter-number: number
+:sectnums:
+:toc:
+
+[NOTE]
+====
+*Documents à utiliser :*
+
+* Réseau Packet Tracer `Tp2-labo-routage.pka`
+* `TP/TpCisco/modesOpératoires/04-CiscoModeOperatoireRouteur.pdf`
+
+====
+
+== Présentation
+
+L’objectif de ce TP est de mettre en place une communication entre cinq réseaux IP via quatre routeurs.
+
+== Mise en oeuvre
+
+Avec *Packet Tracer*, ouvrir le fichier `labo2-routage.pka`.
+
+image::img/tp2-routage-01["Schéma réseau", align="center"]
+
+[NOTE]
+====
+Dans *Packet Tracer*, l'activation des ports (*vert*) peut prendre un certain temps (*10 à 15s*). Avant la configuration, les ports (*interfaces*) des routeurs sont *rouges*.
+
+====
+
+== A faire
+
+. Choisir vos adresses de réseau pour les liaisons entre les 4 routeurs.
+. Configurer les postes en respectant l'adresse IP imposée.
+. Pour chaque routeur, définir les adresses de chaque interface.
+. Configurer les tables de routage en privilégiant les chemins les plus courts.
+. Tests à fournir (captures d'écrans à rendre) :
+    .. Ping de PC4 vers tous les autres PC
+    .. Ping de PC3 vers PC1, PC2-1 et PC2-2
+    .. Ping de PC1 vers PC2-1 et PC2-2
+. A rendre :
+.. Votre fichier Packet Tracer nommé : *labo2-routage-<NomEtudiant>.pka*
+
+.. Votre fichier Word avec les captures d’écran nommé : *labo2-routage-<NomEtudiant>.doc*
