@@ -43,13 +43,13 @@ Pour qu'un serveur Windows 2016 server soit *contrôleur de domaine*, il faut in
 
 * Utiliser le bouton Gestionnaire de serveur :
 
-image::img/tp01-01.png[ align="center"]
+image::img/tp01/tp01-01.png[ align="center"]
 
 
 * Menu menu:Gérer[Ajouter des rôles et fonctionnalités] :
 _(Attendre éventuellement la fin de la collecte des données)
 
-image::img/tp01-02.png[align="center"]
+image::img/tp01/tp01-02.png[align="center"]
 
 * Bouton Suivant pour passer la page ‘Avant de commencer’
 
@@ -59,7 +59,7 @@ image::img/tp01-02.png[align="center"]
 
 * Cocher le Rôle : ‘Services AD DS’, bouton Ajouter les fonctionnalités requises,
 
-image::img/tp01-03.png[align="center"]
+image::img/tp01/tp01-03.png[align="center"]
 
 * Cocher le Rôle : ‘Serveur DNS’, bouton Ajouter les fonctionnalités requises,
 
@@ -69,15 +69,15 @@ image::img/tp01-03.png[align="center"]
 
 * Menu Notifications :
 
-image::img/tp01-04.png[align="center"]
+image::img/tp01/tp01-04.png[align="center"]
 
 * Utiliser le lien : Promouvoir ce serveur en contrôleur de domaine
 
-image::img/tp01-05.png[align="center"]
+image::img/tp01/tp01-05.png[align="center"]
 
 * Cocher : Ajouter une nouvelle forêt
 
-image::img/tp01-06.png[align="center"]
+image::img/tp01/tp01-06.png[align="center"]
 
 * Entrer le nom du domaine (Dxx.BTSSIO, ou xx représente le numéro de votre poste), bouton Suivant,
 
@@ -89,23 +89,23 @@ image::img/tp01-06.png[align="center"]
 
 * Bouton Suivant,
 
-image::img/tp01-07.png[align="center"]
+image::img/tp01/tp01-07.png[align="center"]
 
 * Attendre que le nom de domaine NetBIOS s’affiche automatiquement, bouton Suivant,
 
-image::img/tp01-08.png[align="center"]
+image::img/tp01/tp01-08.png[align="center"]
 
 * Conserver les chemins des dossiers par défaut, bouton Suivant,
 
 * Vérifier les options de configuration dans le résumé,
 
-image::img/tp01-09.png[align="center"]
+image::img/tp01/tp01-09.png[align="center"]
 
 * Bouton Suivant,
 
 * Attendre la fin de la vérification de la configuration, bouton Installer,
 
-image::img/tp01-10.png[align="center"]
+image::img/tp01/tp01-10.png[align="center"]
 
 * À la fin de l'installation, le serveur redémarrer automatiquement, 
 
