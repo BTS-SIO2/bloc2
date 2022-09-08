@@ -1,0 +1,495 @@
+= Gestion des comptes et des utilisateurs dans un domaine
+Bauer Baptiste <cours.bauer@gmail.com>
+:description: Windows 2016 Server.
+:icons: font
+:keywords: windows 2012 Server, Active Directory
+:sectanchors:
+:url-repo: https://github.com/BTS-SIO2
+:chapter-number: number
+:sectnums:
+:toc:
+:experimental:
+:correction:
+
+====
+* *Objectif :*
+Création des comptes utilisateurs et des groupes dans un domaine Windows 2016 Server.
+
+* *Condition :* Le Tp est réalisé par l'étudiant sur Windows 2016 Server (multiboot).
+
+====
+
+== Présentation de l'outil d'administration `Utilisateurs et ordinateurs Active Directory`
+
+La console `Utilisateurs et ordinateurs Active Directory` gère les objets de comptes de domaine, elle contient les dossiers (conteneurs) suivants :
+
+* Le dossier `Builtin` contient les groupes par défaut avec une étendue de domaine local.
+* Le dossier `Computers` contient les comptes d'ordinateurs des stations clientes appartenant au domaine.
+* Le dossier `Domain Controllers` contient les nouveaux contrôleurs de domaine du domaine.
+* Le dossier `ForeignSecurityPrincipals` permet de stocker des identificateurs de sécurité (SID) associés à des objets externes de domaines approuvés.
+* Le dossier `Users` est le conteneur par défaut des utilisateurs du domaine.
+
+[.question]
+**
+Question {counter:question} :
+Que contiennent les dossiers Computers et Domain Controllers, expliquer :
+**
+
+ifdef::correction[]
+[.reponse]
+****
+*Réponse {counter:reponse}* :
+
+ * *Computers* : Rien, il n'y a pas encore de postes clients dans le domaine.
+ * *Domain Controllers* : le nom du serveur, seul contrôleur du domaine Active Directory.
+****
+endif::[]
+
+== Gestion des comptes d'utilisateurs de domaine
+
+=== Création des comptes
+
+Dans la console `Utilisateurs et ordinateurs Active Directory`, Clic droit sur le conteneur `Users`,
+Cliquer sur _Nouveau > Utilisateur_.
+
+Pour chaque utilisateur ci-dessous (_à partir des trois premières colonnes seulement_), remplissez les champs *Prénom*, *Nom*, *Nom d'ouverture de session* et bouton suivant, *Mot de passe (Toto0101)* et *confirmer le mot de passe (Toto0101)*, cocher les *options* appropriées pour le mot de passe, bouton terminer.
+
+[NOTE]
+====
+On ne peut pas avoir *deux noms d'utilisateurs identiques*, et *deux noms d'ouverture de session identiques* (_faire un choix pour Linda Mitchell): Inclure par exemple les initiales pour AssistantClient1._)
+====
+
+
+
+[cols="1,1,1,1,1,1"]
+|===
+| Nom détaillé
+| Nom d'ouverture de session
+| Impératifs du mot de passe
+| Description
+| Horaires
+| Restriction d'accès
+
+|Linda Mitchell
+|VicePresident
+|Doit changer à la prochaine ouverture de session
+|Vice-présidente
+|24h/24, 7j/7
+|Non
+
+|À définir
+|Directeur
+|Doit changer à la prochaine ouverture de session
+|Directeur des RH
+|24h/24, 7j/7
+|Non
+
+|À définir
+|ChefVentes
+|Doit changer à la prochaine ouverture de session
+|Chef des ventes
+|24h/24, 7j/7
+|Non
+
+|À définir
+|Representant
+|Doit changer à la prochaine ouverture de session
+|Représentant
+|7h/20h, 7j/7
+|Non
+
+|Linda Mitchell
+|AssistantClient1
+|Doit changer à la prochaine ouverture de session
+|Assistance clientèle (nuit)
+|18h-6h, 5j/7
+|Non
+|À définir
+|AssistantClient2
+|Le compte est désactivé	Assistance clientèle (jour)
+|6h-18h, 5j/7
+|Non
+
+|À définir
+|ChefComptable
+|Doit changer à la prochaine ouverture de session
+|Chef de la comptabilité
+|24h/24, 6j/7
+|Non
+
+|À définir
+|Comptable
+|Doit changer à la prochaine ouverture de session
+|Comptable
+|24h/24, 6j/7
+|Non
+
+|Jean Petit
+|Comptable
+|Ne peut pas changer de mot de passe
+|Comptable intérimaire
+|8h-18h, 6j/7
+|Oui
+
+|===
+
+=== Rechercher un compte d'utilisateur
+
+Dans la console, _menu > Action_, cliquer sur _Rechercher_.
+Avec l'_Onglet Avancé_, il est possible d'effectuer des recherches sur des critères plus spécifiques avec le bouton _Champ_.
+
+[.question]
+**
+Question {counter:question} :
+Quelles sont les adresses d'un utilisateur qui peuvent servir pour la recherche ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+
+    * Adresse de messagerie,
+    * Adresse de page Web,
+    * Adresse domicile,
+    * Adresse du bureau,
+    * Adresse postale
+****
+endif::[]
+
+=== Création d'une unité logique d'organisation pour regrouper les utilisateurs
+
+Dans la console, Clic droit sur le nom du domaine (Dxx.btssio),
+cliquer sur _Nouveau > Unité d'organisation._
+
+Créer dans votre domaine une nouvelle unité d'organisation nommée *Labo*.
+
+=== Déplacer les utilisateurs dans un nouveau conteneur (dossier)
+
+Sélectionner tous les comptes créés à la *question 1*,
+Avec la souris, déplacer tous ces comptes dans l'unité d'organisation *Labo*.
+
+=== Propriétés d'un compte
+
+*Méthode :*
+
+Clic droit sur le compte et sélectionner _Propriétés_ ou double clic sur le *compte*.
+
+Pour les comptes de l'unité Labo :
+
+* Ajouter la description spécifiée dans le tableau (_onglet Général_).
+* Spécifier la ville de votre choix (_Onglet Adresse_).
+* Définir les restrictions horaires définies dans le tableau (_Onglet Compte_, bouton _horaires d'accès_…).
+* Définir des restrictions de connexion pour que le comptable intérimaire (Jean Petit) ne puisse travailler que sur un seul poste appelé C000 (_Onglet Compte_, _bouton Se connecter à_…).
+* Activer le compte *AssistantClient2*, Onglet _Compte_, case à cocher dans les o__ptions de compte__.
+
+[.question]
+**
+Question {counter:question} :
+Quel est le rôle de la case à cocher Déverrouiller le compte :
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Elle permet de déverrouiller un compte qui a été verrouillé après l'échec de tentatives d'ouverture de session trop nombreuses. Ne pas confondre Activer et Verrouiller.
+****
+endif::[]
+
+Définir le numéro de téléphone du domicile de la Vice-présidente (_Onglet Téléphones_).
+
+=== Tests sur les restrictions
+
+[IMPORTANT]
+====
+Par défaut, *il est impossible* à un simple utilisateur d’ouvrir une session sur un serveur, c’est réservé aux *Administrateurs*. Afin de réaliser les tests du Tp, nous allons déroger à cette restriction de sécurité.
+====
+
+**Préparation :** Autoriser l'ouverture d'une session localement sur le contrôleur de domaine.
+
+* Bouton kbd:[Démarrer] et menu:Outils d’administration[Gestion des stratégies de groupe].
+Ou Bouton kbd:[Démarrer] et dans la zone de recherche saisissez : `GPMC.msc`.
+
+Ouvrir ensuite les dossiers :
+
+*Forêt* : `<dxx>.btssio\Domaines\dxx.btssio\Domain Controllers`.
+
+kbd:[Clic droit] sur `Default Domain Controllers Policy`,
+
+image::img/tp02/tp02-01.png[align="center"]
+
+menu:Clic droit[Default Domain Controllers Policy > Modifier]
+
+[WARNING]
+====
+Il s'agit de *Default Domain Controllers Policy* Et non : Default Domain Policy
+====
+
+*Ouvrir les dossiers* :
+
+menu:Configuration ordinateur[Stratégies Paramètres > Windows > Paramètres de sécurité > Stratégies locales > Attribution des droits utilisateurs ]
+
+image::img/tp02/tp02-02.png[align="center"]
+
+Dans la fenêtre de droite, kbd:[double clic] sur kbd:[Permettre l’ouverture d’une session locale],
+
+Bouton : kbd:[Ajouter un utilisateur ou un groupe]
+
+À l'aide du bouton kbd:[Parcourir…], bouton kbd:[Avancé…], bouton kbd:[Rechercher] :
+
+Sélectionner le groupe : `Utilisateurs du domaine` et bouton kbd:[OK] 3 fois
+
+image::img/tp02/tp02-03.png[align="center"]
+
+Boutons  kbd:[Appliquer] et kbd:[OK] :
+
+image::img/tp02/tp02-04.png[ align="center"]
+
+Pour forcer la mise à jour des stratégies, taper la commande suivante dans l’`Invite de commandes` : `gpupdate /force`
+
+image::img/tp02/tp02-05.png[ align="center"]
+
+
+==== Tests
+
+[IMPORTANT]
+====
+A chaque première ouverture de session, l’utilisateur doit changer son mot de passe, mettre pour le nouveau mot de passe : *Toto0202*
+====
+
+Pour ouvrir une nouvelle session, utiliser : menu:Démarrer[Changer d'utilisateur]
+
+image::img/tp02/tp02-06.png[align="right"]
+
+* Vérifier que vous pouvez ouvrir une session avec le compte `AssistantClient2` (activé dans la partie 2.5).
+
+* Vérifier que vous *NE POUVEZ PAS* ouvrir une session avec le compte `AssistantClient1`.
+
+[.question]
+**
+Question {counter:question} :
+Pourquoi ?
+**
+
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Impossible d'ouvrir une session, car il y a une limitation des comptes, c'est normal : l'heure de connexion en en dehors des heures autorisées : 18h-6h
+****
+endif::[]
+
+* Vérifier que vous *NE POUVEZ PAS* ouvrir une session avec le compte `Icomptable`.
+
+[.question]
+**
+Question {counter:question} :
+Pourquoi ? 
+**
+
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Impossible d'ouvrir une session, car il y a une limitation des comptes, C'est normal, il y a une restriction d'accès pour ce compte, il ne peut ouvrir une session qu'à partir du poste `C000`, voir §2.5
+****
+endif::[]
+
+=== Date d'expiration des comptes
+
+* Revenir à la session `Administrateur`, ouvrir la console `Utilisateurs et ordinateurs Active Directory` ( menu:Démarrer[Outils d’administration] ).
+
+* Fixer une date d'expiration pour le compte `Representant` égale à la *date du jour +1* (onglet kbd:[Compte] )
+
+==== Test
+
+* Vérifier que vous pouvez ouvrir une session avec le compte `Representant`.
+Fermer la session du compte `Representant`.
+
+* Revenir à la session `Administrateur`, ouvrir la console `Utilisateurs et ordinateurs Active Directory`.
+
+* Fixer une date d'expiration pour le compte `Representant` égale à la *date du jour -1* (onglet kbd:[Compte])
+
+* Vérifier que vous *NE POUVEZ PAS* ouvrir une session avec le compte `Representant`.
+
+[.question]
+**
+Question {counter:question} :
+Message affiché?
+**
+
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Le compte de l’utilisateur a expiré.
+****
+endif::[]
+
+*Ouvrir une session avec le compte Administrateur*
+
+=== Répertoire de base de chaque utilisateur
+
+==== Préparation :
+
+
+* Créer un dossier nommé `Data` sur `C:` (`C:\Data`),
+* kbd:[Clic droit] sur ce dossier `C:\Data`, menu:Propriétés[Partage > Partage avancé],
+* Cochez `Partager ce dossier`, bouton kbd:[Autorisations],
+* Cochez `contrôle total` pour le groupe `Tout le monde`,
+Bouton kbd:[Ok] (2 fois) et bouton kbd:[Fermer].
+
+image::img/tp02/tp02-07.png[align="center"]
+
+* Supprimer les droits du groupe `Utilisateurs` (droits hérités),
+* kbd:[Clic droit] sur ce dossier `C:\Data`,  menu:Propriétés[onglet Sécurité >  bouton Avancé]
+* Bouton kbd:[Désactiver l’héritage]
+* Sélectionner `Convertir les autorisations héritées`.
+* Bouton kbd:[Ok]
+
+On peut maintenant supprimer le groupe `Utilisateurs`.
+
+* Bouton kbd:[Modifier..]., sélectionner le groupe `Utilisateurs`,
+* Bouton kbd:[Supprimer] et bouton kbd:[Ok] (2 fois).
+
+image::img/tp02/tp02-08.png[]
+
+* Définir les répertoires de base de chaque utilisateur de l'unité `Labo` :
+    ** Ouvrir la console `Utilisateurs et ordinateurs Active Directory` :
+        *** Sur tous les comptes, menu:Propriétés du compte[onglet Profil] et dans `Dossier de base`, cocher `Connecter`, affecter la lettre `U:`,
+Dans la zone "à :", taper `\\<NomOrdinateur>\data\%username%` (`<NomOrdinateur>` est le nom de votre poste) :
+
+image::img/tp02/tp02-09.png[align="center"]
+
+*Penser à faire un copier/coller du chemin avant d’utiliser le bouton OK.*
+Vérifier la création des répertoires de chaque utilisateur et les permissions attribuées par Windows 2008.
+
+*Permissions :* _Contrôle total pour le compte concerné par le répertoire et pour le groupe Administrateurs du domaine_.
+
+=== Actions courantes sur un compte
+kbd:[Clic Droit] sur un compte.
+
+[.question]
+**
+Question {counter:question} :
+Enumérez les menus qui correspondent à des actions courantes sur un compte (Avant le menu toutes les tâches)
+**
+
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+
+* Copier
+* Ajouter à un groupe
+* Désactiver le compte
+* Réinitialiser le mot de passe
+* Déplacer
+* Ouvrir la page de Démarrage
+* Envoyer un message.
+****
+endif::[]
+
+=== Copie d'un compte
+
+[TIP]
+====
+Lorsque l'on définit de *nombreux comptes disposant des mêmes caractéristiques*, il est pratique de créer un compte modèle pour en faire ensuite une copie.
+====
+
+* *Ajouter deux nouveaux comptes*, un représentant (`Representant2`) et un comptable intérimaire (`Icomptable2`) à partir des comptes déjà créés.
+* Vérifier l'existence des répertoires de base de ces utilisateurs.
+* Regarder les caractéristiques du compte `Icomptable2` que vous venez de créer.
+* Comparer les avec celles définies dans le modèle `Icomptable`.A remplir :
+
+
+|===
+| Si l’option est conservée, mettre O	 | O/N
+
+| Nom détaillé
+|
+ifdef::correction[]
+N
+endif::[]
+
+| L’utilisateur doit changer de mot de passe à la prochaine ouverture de session
+|
+ifdef::correction[]
+O
+endif::[]
+
+| Le mot de passe n’expire jamais
+|
+ifdef::correction[]
+O
+endif::[]
+
+| Les options de l'onglet Profil
+|
+ifdef::correction[]
+O
+endif::[]
+
+| Les options du bouton «Horaires  d'accès»
+|
+ifdef::correction[]
+O
+endif::[]
+
+| Description
+|
+ifdef::correction[]
+N
+endif::[]
+
+| Mot de passe et sa confirmation
+|
+ifdef::correction[]
+N
+endif::[]
+
+| L’utilisateur ne peut pas changer de mot de passe
+|
+ifdef::correction[]
+O
+endif::[]
+
+| Compte désactivé
+|
+ifdef::correction[]
+O
+endif::[]
+
+| Les options de l'onglet Membre de
+|
+ifdef::correction[]
+O
+endif::[]
+|===
+
+
+=== Modification d'un compte
+
+[.question]
+**
+Question {counter:question} :
+Comment modifier le mot de passe du compte `Directeur` et désactiver le compte du comptable intérimaire `Icomptable`.
+**
+
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+kbd:[Clic droit] sur le compte, `désactiver le compte`, `Réinitialiser le mot de passe`
+****
+endif::[]
+
+=== Modification du nom du compte d'un utilisateur
+
+Le fait de renommer un compte permet de modifier le nom du compte tout en gardant les droits, autorisations, appartenance à des groupes, répertoires de base.
+
+* kbd:[Clic droit] sur le nom de compte puis sélectionner `Renommer`, saisissez le nouveau nom détaillé du compte.
+* Changer le nom du compte du chef des ventes `ChefVentes`.
+
+== Gestion des groupes dans un domaine
+
+A compléter...
