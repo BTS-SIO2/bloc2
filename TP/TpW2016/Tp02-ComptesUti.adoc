@@ -492,4 +492,128 @@ Le fait de renommer un compte permet de modifier le nom du compte tout en gardan
 
 == Gestion des groupes dans un domaine
 
+Les groupes possèdent une étendue qui spécifie les comptes qui peuvent en faire partie, ainsi que l'endroit où ils peuvent être utilisés.
+
+Ces étendues de groupes sont au nombre de trois :
+
+* *Domaine local* : utile pour appliquer des permissions à une ressource locale,
+* *Globale* : organise les comptes d'utilisateurs, d'ordinateurs ou de groupes,
+* *Universelle* : regroupe les comptes ou groupes de n'importe quel domaine.
+
+[NOTE]
+====
+On peut insérer un *groupe global* dans un *groupe local*.
+====
+
+
+=== Création des groupes
+
+kbd:[Clic droit] sur le conteneur, cliquez sur menu:Nouveau[Groupe], spécifier le *nom du groupe* et son *étendue*.
+
+* Créer les groupes suivants dans le conteneur `Labo`
+
+*Description des groupes :*
+
+Planification des comptes de groupe
+
+|===
+|Compte de groupe	|Étendue	|Membres
+
+|Direction	|Globale	|VicePresident, Directeur
+|ChefService	|Globale	|ChefVentes, ChefComptable
+|SceClient	|Globale	|AssistantClient1, AssistantClient2
+|Ventes	|Globale	|ChefVentes, Representant, Representant2
+|Ressources humaines	|Locale	|Direction, ChefService
+|===
+
+=== Ajouter des membres à un groupe
+
+*Méthode :*
+
+kbd:[doucle clic]  sur le groupe puis Onglet kbd:[Membres] puis cliquer sur le bouton kbd:[Ajouter] et soit :
+
+* Saisir le nom d’ouverture de session dans `Entrez les noms …` et bouton kbd:[Vérifier les noms],
+* Utiliser le bouton kbd:[Avancée…] puis le bouton kbd:[Rechercher], sélectionner le nom dans la liste et cliquer kbd:[OK] finalement cliquer sur le Bouton kbd:[OK] pour fermer l’onglet kbd:[Membres].
+
+À l’aide du tableau, affecter les utilisateurs aux groupes à l’aide du bouton kbd:[Ajouter] de l’onglet kbd:[Membres].
+
+
+À partir des comptes utilisateurs, vérifier leur appartenance aux groupes.
+
+*Méthode :*
+
+kbd:[Propriétés] du compte d'utilisateur, onglet kbd:[Membre de..]
+
+[.question]
+**
+Question {counter:question} :
+Quelle remarque peut-on faire pour le groupe `Utilisateurs du domaine` défini dans `Users` :
+**
+
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Il *existe déjà*, c'est un groupe global prédéfini dans le domaine, Utilisateurs  du domaine, il ne faut pas le *créer*.
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Quel est le rôle de l'onglet kbd:[Géré par] dans les propriétés d'un groupe.
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Permet de définir la personne chargée de gérer le groupe et d'afficher ses coordonnées.
+****
+endif::[]
+
+=== Renommer un groupe
+
+Lorsque le groupe est renommé, il conserve toutes ses propriétés.
+
+kbd:[Clic droit] sur le nom du groupe, kbd:[Renommer].
+
+Changer le nom du groupe `SceClient` par `ServiceClients` et vérifier que le groupe a conservé ses membres.
+
+=== Permissions attribuées à un groupe
+
+*Préparation :*
+
+* Créer un dossier nommé `RH` dans (`C :`) : Ce dossier recevra tous les documents utilisés pour les ressources humaines.
+
+==== Permissions de sécurité
+
+*Méthode :*
+
+kbd:[Clic droit] sur le dossier, kbd:[Propriétés], onglet kbd:[Sécurité], bouton kbd:[Modifier…], bouton kbd:[Ajouter] pour sélectionner un `utilisateur` ou un `groupe`, utiliser les cases à cocher pour définir les autorisations.
+
+Modifier les permissions de sécurité du dossier `RH` :
+
+* Attribuer le contrôle total au groupe `Ressources humaines`,
+* Supprimer le groupe `Utilisateurs`.
+
+**Test : **
+
+Ouvrir une session avec le compte `VicePresident`, essayer d'ajouter et de supprimer des documents dans le répertoire `RH`.
+
+[.question]
+**
+Question {counter:question} :
+Avez-vous réussi ? Pourquoi ?
+**
+
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Le compte `VicePresident` appartient au groupe global `Direction`, qui lui-même appartient au groupe local `Ressources humaines`. Ce dernier possède les droits `contrôle total` sur le répertoire `RH`.
+****
+endif::[]
+
+== Planifier une stratégie de compte
+
 A compléter...
