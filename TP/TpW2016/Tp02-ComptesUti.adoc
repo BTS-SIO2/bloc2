@@ -492,4 +492,8 @@ Le fait de renommer un compte permet de modifier le nom du compte tout en gardan
 
 == Gestion des groupes dans un domaine
 
-A compléter...
+Les groupes possèdent une étendue qui spécifie les comptes qui peuvent en faire partie, ainsi que l'endroit où ils peuvent être utilisés. Ces étendues de groupes sont au nombre de trois :
+
+* Domaine local : utile pour appliquer des permissions à une ressource locale,
+* Globale : organise les comptes d'utilisateurs, d'ordinateurs ou de groupes,
+* Universelle : regroupe les comptes ou groupes de n'importe quel domaine.
