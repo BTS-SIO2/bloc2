@@ -1,7 +1,21 @@
 = Cahier de texte SIO2 - [2022/2023]
 
 == Semaine 2
-=== Le 05 septembre 2022 : `08h00 à 12h00`
+
+=== Le 09 septembre 2022 : `10h00 à 18h00`
+
+* Début de la série de travaux pratique sur Active Directory.
+** Installation du service sur la partition créée.
+** Lecture et application des TP1 et TP2 jusqu'à la fin de la partie 2.
+
+****
+*Documents* :
+
+* link:./TP/TpW2016/Tp01-ActiveDirectory.adoc[TP1 : Services d’annuaire Active Directory]
+* link:./TP/TpW2016/Tp02-ComptesUti.adoc[TP2 : Gestion des comptes et des utilisateurs dans un domaine]
+
+****
+=== Le 05 septembre 2022 : `08h00 à 17h00`
 
 * Correction des exercices de révision sur les tables de routage
 
