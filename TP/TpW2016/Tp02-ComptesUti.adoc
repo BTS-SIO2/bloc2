@@ -492,7 +492,7 @@ Le fait de renommer un compte permet de modifier le nom du compte tout en gardan
 
 == Gestion des groupes dans un domaine
 
-<<<<<<< HEAD
+=======
 Les groupes possèdent une étendue qui spécifie les comptes qui peuvent en faire partie, ainsi que l'endroit où ils peuvent être utilisés. Ces étendues de groupes sont au nombre de trois :
 
 * Domaine local : utile pour appliquer des permissions à une ressource locale,
@@ -621,7 +621,499 @@ Le compte `VicePresident` appartient au groupe global `Direction`, qui lui-même
 ****
 endif::[]
 
+
 == Planifier une stratégie de compte
 
-A compléter...
->>>>>>> 0c357fa6b1f3061ee9b2d13b949a0057867a37b9
+
+====
+*Mode opératoire :*
+
+Bouton kbd:[Démarrer] > kbd:[Outils d'administration] > kbd:[Gestion des stratégies de groupe]
+
+ou
+
+Bouton kbd:[Démarrer] > kbd:[Rechercher] et taper la commande `GPMC.msc`.
+====
+
+Ouvrir les dossiers `Forêt` : `dxx.btssio\Domaines\dxx.btssio`.
+
+kbd:[Clic droit]  sur `Default Domain Policy`, menu kbd:[Modifier].
+
+image::img/tp02/tp02-10.png[]
+
+
+[WARNING]
+====
+Ne pas utiliser `Default Domain Controllers Policy`  du 2.6
+====
+
+Ouvrir le dossier `Stratégies\Paramètres Windows\Paramètres de sécurité\Stratégies de comptes` :
+
+image::img/tp02/tp02-11.png[]
+
+Utiliser les trois dossiers :
+
+* Stratégies de mot de passe.
+* Stratégies de verrouillage du compte.
+* Kerberos pour définir les stratégies des comptes du domaine.
+
+=== Paramètres de sécurité des comptes
+
+
+Définir les paramètres de sécurité des comptes pour votre domaine en tenant compte des éléments suivants :
+
+Les utilisateurs doivent changer de mot de passe une fois tous les trois mois.
+
+[.question]
+**
+Question {counter:question} :
+Quel est le nom de la stratégie ?
+**
+
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Stratégies de mot de passe, Durée de vie maximale du mot de passe.
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Quelle est la valeur par défaut ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+42 jours.
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Quelle valeur définir ?
+**
+
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+90 Jours.
+****
+endif::[]
+
+Les utilisateurs ne peuvent pas réutiliser un mot de passe pendant un an.
+
+[.question]
+**
+Question {counter:question} :
+Quel est le nom de la stratégie ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Stratégies de mot de passe, Conserver l’historique des mots de passe.
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Quelle est la valeur par défaut ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+24 mots.
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Quelle valeur définir ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+4 mots.
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Utiliser l’onglet Expliquer pour déterminer le rôle de la stratégie : Les mots de passe doivent respecter des exigences de complexité :
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Interdit l'utilisation de mot de passe trop simple, et oblige l’utilisation de différents caractères (majuscules et chiffres).
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Comment désactiver ce paramètre de stratégie de sécurité ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+case à cocher : Désactivé
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Quelle est la longueur minimale du mot de passe définie par défaut dans les stratégies de sécurité ?
+**
+
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+7 caractères.
+****
+endif::[]
+
+Un compte doit-être verrouillé après trois tentatives infructueuses de connexion.
+
+[.question]
+**
+Question {counter:question} :
+Quel est le nom de la stratégie ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Stratégies de verrouillage du compte, Seuil de verrouillage du compte.
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Quelle est la valeur par défaut ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+0
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Que signifie cette valeur ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Pas de verrouillage de compte.
+****
+endif::[]
+
+Définir cette stratégie à 3 et accepter les paramètres suggérés pour les deux autres stratégies.
+
+La durée du verrouillage du compte doit être permanente.
+
+[.question]
+**
+Question {counter:question} :
+Quel est le nom de la stratégie ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Stratégies de verrouillage du compte, Durée de verrouillage des comptes
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Quelle est la valeur par défaut ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+30 minutes.
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Quelle valeur définir ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+0 pour permanent
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Utiliser l’onglet Expliquer pour déterminer le rôle de la stratégie : Réinitialiser le compteur de verrouillages du compte après ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Défini le délai après lequel le compteur du nombre d'essais d'ouverture de session infructueux est remis à 0
+****
+endif::[]
+
+=== Appliquer les paramètres de sécurités de ces stratégies.
+
+Appliquer immédiatement les paramètres de sécurités de ces stratégies.
+
+Fermer la console `Gestion des stratégies de groupe`,
+
+Pour forcer la mise à jour des stratégies, taper la commande suivante dans l’`Invite de commandes` :
+
+`gpupdate /force`
+
+
+=== Tester les restrictions de la stratégie sur le mot de passe
+
+Modifier le mot de passe du compte `VicePresident` : kbd:[clic droit], `Réinitialiser le mot de passe`,
+Ne pas saisir de mot de passe et bouton kbd:[OK].
+[.question]
+**
+Question {counter:question} :
+Que se passe-t-il ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Message : le mot de passe entré n’est pas valide, vérifier la longueur du mot de passe minimale etc...
+****
+endif::[]
+
+Refaire la modification, taper un mot de passe non complexe, comme `_titititi_` et confirmer le.
+
+Vérifier que la case `L’utilisateur doit changer de mot de passe à la prochaine ouverture de session` soit cochée.
+
+Ouvrir une session avec le compte `VicePresident`, à la demande du système, saisir un nouveau mot de passe, le même que celui défini par l’administrateur `_titititi_`.
+
+[.question]
+**
+Question {counter:question} :
+Pourquoi le système refuse ce mot de passe ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+A cause de l’historique des mots de passe
+****
+endif::[]
+
+Entrer un nouveau mot de passe `_totototo_` et confirmer le.
+
+Tester le verrouillage de compte :
+Fermer la session,
+Ouvrir une nouvelle session avec le même compte `VicePresident` mais sans taper le mot de passe,
+Refaites 2 autres tentatives en indiquant le même compte, mais sans mot de passe.
+Maintenant, ouvrir une session avec le même compte et le bon mot de passe `_totototo_`.
+
+[.question]
+**
+Question {counter:question} :
+Que se passe-t-il ?
+**
+
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Un message indique que le compte est actuellement verrouillé (suite au trois tentatives).
+****
+endif::[]
+
+Ouvrir une session avec le compte `administrateur`
+
+[.question]
+**
+Question {counter:question} :
+comment résoudre le problème ?
+**
+
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Propriétés du compte, `onglet Compte`, utiliser la case à cocher : `Déverrouiller le compte`
+****
+endif::[]
+
+== Mise en place de quota sur les disques
+
+Les quotas de disque assurent le suivi et le contrôle de l'utilisation de l'espace disque pour des volumes ou des partitions (pas pour des dossiers spécifiques).
+
+En activant les quotas disques, il est possible de définir deux valeurs :
+
+1. *La limite de quota disque* : définit l'espace disque qu'un utilisateur est autorisé à utiliser.
+2. *Le niveau d'avertissement* : définit le moment à partir duquel l'utilisateur est sur le point d'atteindre sa limite.
+
+Les quotas disques ne s'appliquent que sur des volumes formatés en *NTFS*.
+
+
+[TIP]
+====
+Il est possible d’ajouter l’icon Ordinateur "*Ce PC* » sur le bureau :
+
+- Clic droit sur le bureau, menu *Personnaliser*, *Thèmes*, *Paramètres des icônes du Bureau*.
+
+- Sélectionner *Ordinateur*.
+====
+
+=== Activation des quotas disques.
+
+*Méthode :*
+
+====
+Ouvrir `Ordinateur`, kbd:[clic droit] sur le volume concerné, kbd:[Propriétés], Onglet kbd:[ Quota],
+
+Cocher la case `Activer la gestion de quota` et spécifier les valeurs de limite de quota et d'avertissement.
+
+Sélectionner les cases `Enregistrer l'événement pour les excès de limite` et d' `avertissement`.
+
+Activer les quotas sur le `volume (C:)`, avec une limite de quota de `80Mo` et un niveau d'avertissement de `40Mo`.
+
+====
+
+=== Quota disque spécifique par utilisateur
+
+**Méthode **
+
+====
+Ouvrir kbd:[Ordinateur], kbd:[clic droit] sur le volume concerné, kbd:[Propriétés], Onglet kbd:[Quota], bouton kbd:[Entrées] de quota.
+
+Pour modifier : kbd:[Double clic] sur la ligne concernée,
+Pour ajouter un nouveau quota : Menu kbd:[Quota], kbd:[Nouvelle entrée de quota].
+
+Modifier la limite de quota pour la rendre illimitée pour tous les utilisateurs dont l’état est en Limite supérieure (Divers comptes prédéfinis par le système).
+
+====
+
+**Test : **
+
+* Ouvrir une session avec le compte `VicePresident` (mot de passe `*totototo*`),
+Copier le dossier `C:\Programmes\Internet Explorer` dans le dossier `C:\Data\VicePresident`
+
+* Changer d’utilisateur (ne pas fermer la session).
+
+* Revenir à la session `Administrateur`, dans la gestion des quotas, bouton kbd:[Entrées de quota].
+
+
+*Quels sont les états des comptes et la quantité utilisée pour :*
+
+[.question]
+**
+Question {counter:question} :
+Le `VicePresident`
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Avertissement (80Mo<x<40Mo), c'est la place occupée par le profil local,
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Le `AssistantClient2`
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Avertissement (80Mo<x<40Mo), c'est la place occupée par le profil local,
+****
+endif::[]
+
+[.question]
+**
+Question {counter:question} :
+Le `Representant2`
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+OK (<40 Mo), pas d’ouverture de session, donc pas de profil.
+****
+endif::[]
+
+Modifier la limite de quota pour le `VicePresident` avec une valeur juste inférieure à la quantité utilisée par ce compte.
+[.question]
+**
+Question {counter:question} :
+Dans quel état passe ce compte ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+Alerte
+****
+endif::[]
+
+=== Refuser de dépasser le quota disque
+
+**Méthode **
+====
+Ouvrir kbd:[Ordinateur], kbd:[clic droit] sur le volume concerné, kbd:[Propriétés], Onglet kbd:[Quota],
+
+Cocher la case kbd:[Refuser de l'espace disque aux utilisateurs qui dépassent leur limite de quota].
+====
+
+*Test*
+
+Revenir à la session ouverte avec le compte `VicePresident`,
+Essayer de créer un simple fichier texte dans le dossier `C:\Data\VicePresident`
+
+[.question]
+**
+Question {counter:question} :
+Que se passe-t-il ? Pourquoi ?
+**
+ifdef::correction[]
+[.reponse]
+****
+Réponse {counter:reponse} :
+*Message : Espace insuffisant* sur disque local. C’est la mise en œuvre de l'option  refusé le dépassement de la limite du quota disque.
+****
+endif::[]
+
+Revenir à la session `Administrateur`,
+
+[CAUTION]
+====
+Désactiver la gestion des quotas, sinon vous serez bloqué pour les prochains travaux pratiques.
+====
+
