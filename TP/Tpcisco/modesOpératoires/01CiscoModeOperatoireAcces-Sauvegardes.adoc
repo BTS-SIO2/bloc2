@@ -1,0 +1,332 @@
+= Cisco IOS (Internetwork Operating System), Mode opératoire,Accès console, Telnet, SSH et sauvegardes
+Bauer Baptiste <cours.bauer@gmail.com>
+:description: Mode opératoire
+:icons: font
+:keywords: Packet Tracer, cisco, mode opératoire
+:sectanchors:
+:url-repo: https://github.com/BTS-SIO2
+:chapter-number: number
+:toc:
+:experimental :
+
+
+== Introduction sur Cisco IOS
+
+Le système d’exploitation des matériels *Cisco* se nomme *IOS* pour **I**nternetworking **O**perating **S**ystem.
+
+Il y a quatre niveaux de commandes :
+
+* *Mode d’entrée*, pour des commandes de consultation
+
+`NomRouteur>`
+
+* *Mode privilège*, pour des commandes de consultation plus avancées (*enable*)
+
+`NomRouteur#`
+
+* *Mode configuration générale*, pour des commandes de configuration générale du matériel (*conf t*)
+
+`NomRouteur(config)#`
+
+* *Mode configuration interface*, pour la configuration des interfaces (*int NomInterface*)
+
+`NomRouteur(config-if)#`
+
+
+Pour revenir au mode précédent (remonter d’un niveau) : `*exit*`
+Pour revenir au mode user : kbd:[ctrl, z]  ou `end`
+
+[TIP]
+====
+On peut accélérer la frappe des commandes à l’aide de la touche tabulation kbd:[tab]
+====
+
+:sectnums:
+== Connexion via le câble console
+
+*Connexion physique* :
+
+* Vérifier sur le poste, le numéro du port série sur lequel est connecté le câble console du matériel (*COM1* ou *COM2*).
+
+* Connexion avec l'outil *putty* (lancer `putty` sur le poste relié au matériel)
+** Dossier #_Connection\Serial_#
+*** Définir le port série (COM1 ou COM2),
+*** Saisir les informations de la liaison série :
+**** *Bits par seconde* : 9600
+**** *Bits de données* : 8
+**** *Bits d’arrêt* : 1
+**** *Parité* : Aucun
+**** *Contrôle de flux* : Aucun
+
+
+** Dossier #_Session_#
+*** Sous *Connection type*, Sélectionner *Serial*
+
+** Bouton #_Open_#
+
+== Première configuration
+
+Mise en route du matériel Cisco :
+
+* `enable` pour accéder au mode privilège : `#`
+* `conf  t` pour accéder au mode configuration : `(config)#`
+* `hostname` pour changer le nom du matériel (routeur ou commutateur)
+* `enable password` pour définir un mot de passe non crypté au mode privilège
+* `enable secret` pour définir un mot de passe crypté au mode privilège
+* `service password-encryption` pour crypter les mots de passe du fichier de configuration
+* `exit` pour revenir en mode privilège : `#`
+* `sh run` pour voir la configuration active du matériel
+* `sh start` pour voir la configuration de démarrage du matériel
+
+== Configuration d'une adresse IP et d’une passerelle
+
+Voir les noms des interfaces
+
+* `show interfaces` pour visualiser les noms et l’état de toutes les interfaces.
+
+Configuration de l’interface *Ethernet* `g0/0` (seulement routeur) :
+
+* `conf t` pour accéder au mode configuration : `(config)#`
+* `int g0/0` pour accéder à la configuration de l'interface `g0/0 : (config-if)#`
+* `ip address <AdresseIp> <masque>` pour définir l’adresse IP
+* `no shutdown` pour activer l'interface
+* `exit` pour revenir au mode configuration (config)#
+
+Configuration de l’interface (virtuelle) du *Vlan 1* (*seulement commutateur*) :
+
+* `conf t` pour accéder au mode configuration : `(config)#`
+* `int vlan 1` pour accéder à la configuration de l'interface virtuelle du vlan 1: `(config-if)#`
+* `ip address <AdresseIp> <masque>` pour définir l’adresse IP
+* `no shutdown` pour activer l’interface virtuelle du vlan 1
+* `exit` pour revenir au mode configuration `(config)#`
+
+
+Vérifier la configuration des interfaces :
+
+* `show interfaces vlan 1` pour visualiser l’état de l'interface du *vlan 1*
+* `show interfaces g0/0` pour visualiser l’état de l'interface *g0/0*
+
+Configurer une passerelle par défaut sur un commutateur
+
+* `conf t` pour accéder au mode configuration : `(config)#`
+* `ip default-gateway 10.0.0.1` pour affecter une passerelle par défaut au commutateur
+
+Test de l’interface reliée au poste (attention, configurer l’adresse Ip du poste avant) :
+
+* `enable` pour accéder au mode privilège : `#`
+* `ping <IpduPoste>` pour tester la connexion vers le poste
+
+== Configuration de l’accès console pour administrer le matériel
+
+* `conf t` pour accéder au mode configuration : `(config)#`
+* `line con 0` pour accéder au mode configuration console : `(config-line)#`
+* `password cisco` pour définir un mot de passe d’accès pour la connexion console
+* `login` pour obliger la saisie du mot de passe
+* `logging synchronous` (_facultatif : empêche les messages d’interrompre les commandes_)
+* `exit` pour revenir en mode privilège : `#`
+
+== Configuration de l’accès Telnet pour administrer le matériel à distance
+
+*L’accès via Telnet nécessite aussi de définir un mot de passe pour l’accès au mode privilégié :*
+
+* `conf  t` pour accéder au mode configuration : `(config)#`
+* `enable password toto` pour définir un mot de passe non crypté pour le mode privilégié
+
+*Mise en place du service Telnet sur le matériel*
+
+* `conf  t` pour accéder au mode configuration : `(config)#`
+* `line vty 0 15` pour accéder au mode configuration Telnet (canaux de 0 à 15) `(config-line)#`
+* p``assword toto`` pour définir un mot de passe pour la connexion Telnet
+* `login` pour obliger la saisie du mot de passe
+* `logging synchronous` (facultatif : empêche les messages d’interrompre les commandes)
+* `access-class 21 in` (facultatif : utilise la liste de contrôle d’accès 21 pour filtrer l’accès Telnet)
+* `exit` pour revenir en mode privilège : #
+
+*Connexion avec le client Telnet de `putty` (lancer putty)*
+
+*Dossier Session*
+
+* Saisir l’adresse Ip de votre matériel (Host name or Ip adress)
+* Sous Connection type, Sélectionner Telnet
+
+*Bouton Open*
+
+* Dans l’invite de commandes, saisir les informations de sécurité (mot de passe)
+* Lancer les commandes IOS du matériel : (`enable`, `conf t`, `exit`, etc.)
+
+*Connexion avec le client Telnet de Windows 7*
+
+* Activer le client Telnet sur Windows 7 :
+
+** menu:Panneau de configuration[Programmes > Activer ou désactiver des fonctionnalités Windows]
+
+** Cocher *Client Telnet*, bouton Ok.
+
+* Dans l'invite de commandes de Windows 7, lancer `*telnet* <IpCommutateur>`
+Dans l’invite de commandes, saisir les informations de sécurité (mot de passe)
+Lancer les commandes IOS du matériel : (`enable`, `conf t`, `exit`, etc.)
+
+== Configuration de l’accès SSH pour administrer le matériel à distance
+
+[WARNING]
+====
+Le protocole *Telnet* n’étant pas sécurisé, il est recommandé d’utiliser le protocole *SSH*.
+====
+
+*L’accès via SSH nécessite aussi de définir un mot de passe pour l’accès au mode privilégié :*
+
+* `conf  t` pour accéder au mode configuration : `(config)#`
+* `enable password toto` pour définir un mot de passe non crypté pour le mode privilégié
+
+*Pour afficher les informations sur la configutation SSH*
+
+* `show ip ssh`
+
+*Pour activer SSH*
+
+* `conf  t` pour accéder au mode configuration : `(config)#`
+* `hostname <nom>` (si non défini, nécessite un nom différent du nom par défaut)
+* `ip domain-name <nom-domaine>` pour définir un nom de domaine (nécessaire)
+* `crypto key generate rsa` pour générer une clé de cryptage, choisir *1024 à la demande*
+* i``p ssh version 2`` pour spécifier la version 2 du protocole SSH, plus sécurisée
+
+*Créer un utilisateur local pour la connexion SSH (nécessaire)*
+
+* `conf  t` pour accéder au mode configuration : `(config)#`
+* `username <username> secret <password>` pour créer l’utilisateur _<username>_ avec son mot de passe
+
+Ou éventuellement :
+
+* `username <username> privilege 15 secret <password>` connexion directe au mode `Enable`
+
+*Pour configurer l’accès SSH de base*
+
+* `conf  t` pour accéder au mode configuration : `(config)#`
+* `line vty 0 15` pour accéder au mode configuration distant (canaux de 0 à 15) `(config-line)#`
+* `transport input ssh` pour imposer le protocole *SSH* de l’accès distant
+-`` access-class 21 in`` (facultatif : utilise la liste de contrôle d’accès 21 pour filtrer l’accès SSH)
+* `login local` pour exiger l'authentification locale des connexions provenant d'une base de
+données de noms d'utilisateur locale
+
+*Paramètres supplémentaires de l’accès SSH*
+
+* `conf  t` pour accéder au mode configuration : `(config)#`
+* `ip ssh time-out 75` valeur du délai d'attente de SSH
+* `ip ssh authentication-retries 2` nombre de tentatives d'authentification *SSH*
+
+*Connexion avec le client SSH de putty (lancer putty)*
+
+*Dossier Session*
+
+* Saisir l’adresse Ip de votre matériel (Host name or Ip adress)
+* Sous Connection type, Sélectionner SSH
+
+*Bouton Open*
+
+* Dans l’invite de commandes, saisir les informations de sécurité (mot de passe)
+* Lancer les commandes IOS du matériel : (`enable`, `conf t`, `exit`, etc.)
+
+
+== Administration par le serveur http
+
+**Lancer le serveur http interne du matériel :**
+
+* `conf  t` pour accéder au mode configuration : `(config)#`
+* `ip http server`
+
+*Test à partir du poste :*
+
+* Dans Internet Explorer, taper http://<IpMateriel>
+* Naviguer dans les pages pour administrer le matériel
+
+*Arrêter le serveur http interne du matériel :*
+
+* `conf  t` pour accéder au mode configuration : `(config)#`
+* `no ip http server`
+
+== Sauvegardes des configurations du matériel
+
+Au démarrage, le matériel est configuré avec les informations du fichier `startup-config` (si il existe), les commandes de configuration lancées à partir de la console (ou telnet) ne sont pas sauvegardées automatiquement, elles sont placées dans la *RAM*.
+
+=== Sauvegardes locales
+
+*Sauvegarde de la configuration active (RAM) dans le fichier de startup-config :*
+
+* `enable` pour accéder au mode privilège : `#`
+* `copy run start` pour copier la configuration active dans le fichier `startup-config`
+
+*Récupération des configurations à partir du fichier local de configuration du matériel :*
+
+* `copy start run` pour remplacer la configuration active par celle du fichier de démarrage
+
+=== Sauvegardes via `Tftp`
+
+*Sauvegarde de la configuration active (RAM) sur le poste (via un serveur Tftp) :*
+
+*Sur le poste (avec par exemple, le serveur Tftpd32):*
+
+* Créer un dossier pour les fichiers de configuration nommé `c:\savCisco`
+* lancer le serveur *Tftpd32* sur le poste qui va recevoir le fichier de configuration
+* Désactiver le serveur DHCP de *Tftpd32* : bouton Settings, case à cocher DHCP server
+* Spécifier le dossier où sont placés les fichiers transférés : bouton *Browse*, sélectionner le dossier `c:\savCisco`, bouton Ok, vérifier avec le bouton "*Show Dir*"
+
+*Sur le matériel :*
+
+* `enable` pour accéder au mode privilège : #
+* `copy run tftp` pour copier la configuration active vers le serveur *Tftp*
+* Saisir les informations demandées :
+
+** `Remote host [x.x.x.x]?`  : Saisir l’Ip du serveur TFTP
+** `Name of configuration file to write [router-confg]?` : Touche kbd:[Entrée]  ou saisir nom du fichier.
+
+** `Write file router-confg on host x.x.x.x ?[confirm]` 	Touche kbd:[Entrée] pour confirmer.
+
+*Sur le poste :*
+* Vérifier la présence du fichier de configuration copié à partir du matériel (dossier `c:\savCisco`)
+
+*Récupération des configurations à partir du fichier de configuration du serveur Tftp du poste :*
+
+* `enable` pour accéder au mode privilège : `#`
+* `copy tftp run` pour récupérer la configuration via le serveur Tftp et la rendre active
+* Saisir les informations demandées :
+
+** `Host or network configuration file [host] ?` 		Touche kbd:[Entrée]
+** `Address of remote host [255.255.255.255]?` 	Saisir l’Ip du serveur TFTP
+** `Name of configuration file [router-confg] ?` 		Touche kbd:[Entrée] ou saisir nouveau nom
+** `Configure using router-confg from x.x.x.x.?[confirm]` Touche kbd:[Entrée] pour confirmer
+
+=== Sauvegardes via FTP
+
+*Sauvegarde de la configuration active (RAM) via un serveur FTP :*
+
+* Installer et configurer un serveur FTP sur Windows2008 R2 (voir Tp) :
+** Définir les différents éléments : dossiers, sécurité, etc...
+
+*Sur le matériel* :
+
+** `enable` pour accéder au mode privilège : #
+** `copy run ftp` pour copier la configuration active via le serveur FTP
+** Saisir les informations demandées
+
+* Avec une authentification exigée sur le serveur FTP
+
+**Solution 1 **: La commande `copy` intègre le login et le mot de passe
+* `copy run ftp://login:mot-de-passe@IpFTP`
+
+**Solution 2 **: Définir un compte FTP sur le routeur ou le commutateur
+
+* `conf  t` pour accéder au mode configuration : `(config)#`
+* `ip ftp username <nomUtilisateurFtp>`
+* `ip ftp password <mot-de-passe>`
+* `exit`
+* `copy run ftp` pour copier la configuration active via le serveur FTP avec l’identification
+* Saisir les informations demandées
+
+*Sur le serveur FTP :*
+
+* Vérifier la présence du fichier de configuration copié à partir du matériel
+
+* Récupération des configurations à partir du fichier de configuration du serveur FTP
+* `enable` pour accéder au mode privilège : #
+* `copy ftp run` pour récupérer la configuration via le serveur FTP et la rendre active
+* Saisir les informations demandées	

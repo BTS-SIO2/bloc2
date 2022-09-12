@@ -1,0 +1,131 @@
+= Première configuration d’un routeur Cisco
+Bauer Baptiste <cours.bauer@gmail.com>
+:description: TP Packet Tracer.
+:icons: font
+:keywords: révisions, routeur, table de routage, TP, Packet Tracer
+:sectanchors:
+:url-repo: https://github.com/BTS-SIO2
+:chapter-number: number
+:sectnums:
+:toc:
+
+[NOTE]
+====
+* *Objectif :* Première configuration des interfaces d’un routeur *Cisco*
+* *Documents :*
+** `modesOpératoires/01CiscoModeOperatoireAcces-Sauvegardes.pdf`,
+** `modesOpératoires/04CiscoModeOperatoireRouteur.pdf`
+* *Matériel* :
+** Routeur 2901
+** Deux postes entrée Windows10 Labo
+* *Outils* : `putty.exe`
+* *Condition* : Le Tp est réalisé en binôme.
+====
+
+
+[.etape]
+****
+*{counter:etape})* *Réaliser la première connexion à votre matériel via le câble console*
+
+Voir le mode opératoire :**01CiscoModeOperatoireAcces-Sauvegardes.pdf**
+****
+
+[.etape]
+****
+*{counter:etape})* *Pour effacer toutes configurations antérieures* (#*SI NECESSAIRE*#),
+
+lancer les commandes suivantes :
+
+    * `enable`
+    * `erase startup-config`, (à la demande, confirmer)
+    * `reload`, (à la demande, confirmer)
+
+[IMPORTANT]
+====
+Lorsque le matériel est réinitialisé, *il ne faut pas lancer le dialogue de configuration* (_Configuration dialogue : no_)
+====
+****
+
+[.etape]
+****
+*{counter:etape}) Changer le nom du matériel*
+
+* Utiliser la commande `hostname` (enable / configuration terminal)
+* Mettre le nom indiqué sur l'étiquette du matériel
+****
+
+[.etape]
+****
+*{counter:etape}) Sauvegarder la configuration du routeur dans le fichier local de démarrage*
+
+* `copy running-config startup-config`
+
+Que l’on peut remplacer par : `copy run start`
+****
+
+[.etape]
+****
+*{counter:etape}) Afficher la configuration active*
+
+* `show running-config`   (ou `sh run`)
+
+*Afficher la configuration de démarrage*
+
+* `show startup-config`   (ou `sh start`)
+
+****
+
+[.etape]
+****
+*{counter:etape}) Configurer l’adresse IP de l’interface `G0/0`*
+
+* *Adresse IP* : `172.16.0.254/16`,
+
+[TIP]
+====
+Voir le mode opératoire #_04CiscoModeOperatoireRouteur.pdf_#
+====
+
+****
+
+[.etape]
+****
+*{counter:etape}) Configurer l’adresse IP de l’interface `G0/1`*
+
+* *Adresse IP* : `172.17.0.254/16`,
+
+[TIP]
+====
+Voir le mode opératoire #_04CiscoModeOperatoireRouteur.pdf_#
+====
+
+****
+
+[.etape]
+****
+*{counter:etape}) Sauvegarder la configuration du routeur dans le fichier local de démarrage*
+****
+
+[.etape]
+****
+*{counter:etape}) Configuration des postes*
+
+* Sur les deux postes, *désactiver la carte réseau Intel*
+* Connecter un poste sur l’interface `G0/0` du routeur avec la *carte réseau Broadcom*
+* Sur cette carte réseau, définir une adresse IP compatible avec l’adresse de `G0/0`
+* Connecter le second poste sur l’interface `G0/1` du routeur avec la** carte réseau Broadcom**
+* Sur cette carte réseau, définir une adresse IP compatible avec l’adresse de `G0/1`
+****
+
+[.etape]
+****
+*{counter:etape}) Afficher la table de routage du routeur et retrouver les deux routes ajoutées automatiquement (_Connected_)*
+
+****
+
+[.etape]
+****
+*{counter:etape}) Tests*
+
+* Tester la connexion entre les postes et le routeur et faite le nécessaire pour avoir une connexion entre les deux postes.
+****
