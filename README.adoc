@@ -1,5 +1,23 @@
 = Cahier de texte SIO2 - [2022/2023]
 
+== Semaine 3
+=== Le 09 septembre 2022 : `8h00 à 17h00`
+* Fin du `Tp02-ComptesUti.adoc`
+* Début et fin du `Tp03-EnvironmenUti.adoc`
+* Configuration du *matériel physique Cisco* : Le Routeur.
+Présentation du matériel, de la procédure pour se connecter sur la console avec Putty.
+
+****
+*Documents* :
+
+* link:./TP/TpW2016/Tp03-EnvironmentUti.adoc[Tp03 : Gestion de l'environnement de travail des utilisateurs d'un domaine]
+* link:./TP/Tpcisco/matérielCisco/Tp01-MatCisco-Routeur.adoc[Tp01 : Première configuration d’un routeur Cisco]
+* link:./TP/Tpcisco/modesOpératoires/01CiscoModeOperatoireAcces-Sauvegardes.adoc[01CiscoModeOperatoireAcces-Sauvegardes.adoc]
+* link:./TP/Tpcisco/modesOpératoires/04-CiscoModeOperatoireRouteur.adoc[04-CiscoModeOperatoireRouteur.adoc]
+
+
+****
+
 == Semaine 2
 
 === Le 09 septembre 2022 : `10h00 à 18h00`
