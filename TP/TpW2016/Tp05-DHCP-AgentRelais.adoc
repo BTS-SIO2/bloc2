@@ -11,7 +11,6 @@ Bauer Baptiste <cours.bauer@gmail.com>
 :experimental:
 :correction:
 
-
 ====
 * *Objectif :*
 Configuration dynamique des paramètres TCP/IP des stations clientes.
@@ -115,10 +114,11 @@ Connecter vous à votre routeur via le câble console.
 Configurer l’agent relais DHCP sur l’interface G0/1 du routeur :
 
 * `conf  t` 	pour accéder au mode configuration : (config)#
-* `int g0/1` 	pour accéder à la configuration de l’interface réseau `g0/0` : `(config-if)#`
+* `int g0/1` 	pour accéder à la configuration de l’interface réseau `g0/1` : `(config-if)#`
 * `ip helper-address AdresseIPServeurDHCP` 	(agent relais) pour spécifier l'adresse IP du serveur *DHCPv4*
 * `end` 	pour revenir en mode privilège : #
 
+image::../../bloc2/img/01-dhcp-03.png[]
 * Afficher les informations de l’interface :``show ip interface g0/1``
 
 [.question]
