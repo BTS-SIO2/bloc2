@@ -1,7 +1,24 @@
 = Cahier de texte SIO2 - [2022/2023]
 
+== Semaine 4
 
+=== 21/09/2022
+* fin TP : DHCP Relais
+* TP : Routeur 2 Packet Tracer
 
+=== 19/09/222
+* TP: Windows 2016 - DHCP Simple
+* TP: Windows 2016 - DHCP Relais
+
+****
+*Documents* :
+
+* link:./TP/TpW2016/Tp04-DHCP-simple.adoc[Tp04 :Windows 2016 - DHCP Simple]
+* link:./TP/TpW2016/Tp05-DHCP-AgentRelais.adoc[Tp05: Windows 2016 - DHCP Agent Relais]
+* link:./TP/Tpcisco/Routage2/Tp2-cisco_routage.adoc[Tp02: Routage CISCO]
+* link:./TP/Tpcisco/Routage2/Tp2-cisco_routage.pka[Fichier Packet Tracer]
+
+****
 
 == Semaine 3
 === Le 12 septembre 2022 : `8h00 à 17h00`
