@@ -13,7 +13,7 @@ Bauer Baptiste <cours.bauer@gmail.com>
 ====
 *Documents à utiliser :*
 
-* Réseau Packet Tracer `03CiscoModeOperatoireCommutateurVlan.adoc`
+* Réseau Packet Tracer `03-CiscoModeOperatoireCommutateurVlan.adoc`
 
 ====
 
