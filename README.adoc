@@ -13,6 +13,7 @@
 
 * link:./TP/Tpcisco/Tp02_DHCP-DNS/Tp02_DHCP-DNS.adoc[Tp02_DHCP-DNS.adoc]
 * link:./TP/TpPowerShell/Tp01-PowerShell-FichiersTexte/Tp01-PowerShell-FichiersTexte.adoc[Tp01-PowerShell-FichiersTexte.adoc]
+* link:./TP/TpPowerShell/Tp01-PowerShell-FichiersTexte/scripts/[PowerShell Correction]
 * link:./TP/Tpcisco/Tp02_Vlan/Tp02CiscoVlan01.adoc[Tp02CiscoVlan01.adoc]
 * link:./TP/Tpcisco/Tp02_Vlan/laboVlan1.pka[laboVlan1.pka]
 
