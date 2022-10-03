@@ -8,7 +8,7 @@ Bauer Baptiste <cours.bauer@gmail.com>
 :chapter-number: number
 :toc:
 :experimental:
-:correction:
+
 
 ====
 * *Objectif :*
