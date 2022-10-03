@@ -1,5 +1,32 @@
 = Cahier de texte SIO2 - [2022/2023]
 
+== Semaine 6
+
+=== 03/10/2022
+- Finir *TpW2016-06-DNS.doc*
+- TP Packet Tracer : `Tp02_DHCP-DNS.adoc`
+- TP Powershell : `Tp01-PowerShell-FichiersTexte.adoc`
+
+****
+*Documents* :
+
+* link:./TP/Tpcisco/Tp02_DHCP-DNS/Tp02_DHCP-DNS.adoc[Tp02_DHCP-DNS.adoc]
+* link:./TP/TpPowerShell/Tp01-PowerShell-FichiersTexte/Tp01-PowerShell-FichiersTexte.adoc[Tp01-PowerShell-FichiersTexte.adoc]
+
+****
+== Semaine 5
+
+* TP : TpW2016-05-WEB-etu
+* TP : Windows 2016 DNS
+* bloc2-01-partageInternet.ppt
+* *bloc2-01-partageInternet-etu.docx*
+* TD : Révision IP 1 *bloc2-02-ip-td1.doc*
+
+* TD : Révision IP 2 *bloc2-02-ip-td1.doc*
+* TP : Cisco Packet TRACER DHCP / DNS *Tp02SISRCisco_DHCP-DNS.pdf*
+* TP N°2 : *Tp02SISRMatCisco_Administration.pdf*
+* *TpW2016-06-DNS.doc*
+
 == Semaine 4
 
 === 21/09/2022

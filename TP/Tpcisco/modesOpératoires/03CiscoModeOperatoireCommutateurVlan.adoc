@@ -1,0 +1,237 @@
+= Mode opératoire commutateur et VLAN - Commutateur Cisco 2960 et commutateur-routeur 3560
+Bauer Baptiste <cours.bauer@gmail.com>
+:description: Mode opératoire
+:icons: font
+:keywords: Packet Tracer, cisco, switch, mode opératoire
+:sectanchors:
+:url-repo: https://github.com/BTS-SIO2
+:chapter-number: number
+:sectnums:
+:toc:
+:experimental :
+
+
+== Configuration du commutateur
+
+Mise en route du commutateur Cisco :
+
+
+|===
+|`enable` | Pour accéder au mode privilège : #
+|`conf  t` | Pour accéder au mode configuration : (config)#
+|`enable password` |Pour changer le mot de passe
+|`hostname` |Pour changer le nom du commutateur
+|`exit` |Pour revenir en mode privilège : #
+|`sh run` |Pour voir la configuration active du commutateur
+|`sh start` |Pour voir la configuration de démarrage du commutateur
+|===
+
+Commandes utiles :
+|===
+| `enable` |Pour accéder au mode privilège : #
+| `no ip domain-lookup`   |Pour ne pas avoir de requêtes dns intempestives
+|`conf  t`  |Pour accéder au mode configuration : (config)#
+| `line con 0` | Pour accéder au mode configuration console : (config-line)#
+|`logging synchronous` | Pour empêcher les messages de console d’interrompre les commandes
+|===
+
+== Configuration des vlan
+
+Création/modification d'un vlan :
+|===
+| `conf t` |Pour accéder au mode configuration : (config)#
+| `vlan 2` |Pour créer/modifier le vlan dont l'identifiant est 2 : (config-vlan)#
+| `name <nomVlan>` |Pour définir un nom à ce vlan
+| `exit` |Pour revenir au mode configuration (config)#
+|===
+
+Suppression d'un vlan :
+|===
+| `conf t` |Pour accéder au mode configuration : (config)#
+| `no vlan id` |Pour supprimer le vlan dont l'identifiant est id : (config)#
+| `exit` |Pour revenir en mode privilège : #
+|===
+
+Afficher les vlan avec les interfaces (ports) affectés (*sauf les ports trunk*) :
+
+* `show vlan`
+
+== Configuration des interfaces (ports) dans les vlan
+
+Affectation d'une interface (port FastEthernet)  non 'taggé' dans un vlan :
+
+|===
+| `conf t` |Pour accéder au mode configuration : (config)#
+| `int f0/1` |Pour accéder à la configuration du port FastEthernet0/1 : (config-if)#
+| `switchport mode access` |Pour spécifier le mode de l’interface (désactive négociation trunk)
+| `switchport access vlan 2` |Pour affecter ce port au vlan 2 (non 'taggé')
+| `exit` |Pour revenir au mode configuration (config)#
+|===
+
+Affectation d'un ensemble d'interfaces (ports FastEthernet) non 'taggés' dans un vlan :
+
+|===
+| `conf t`| Pour accéder au mode configuration : (config)#
+| `interface range f0/1 - 10` (_attention espace_) |pour les 10 ports FastEthernet : (config-if-range)#
+| `switchport mode access` |Pour spécifier le mode de l’interface (désactive négociation trunk)
+| `switchport access vlan 2` |Pour affecter ces 10 ports au vlan 2 (non 'taggé')
+| `exit` |Pour revenir au mode configuration (config)#
+|===
+
+Affectation d'une interface (port FastEthernet)  'taggé' dans tous les vlan :
+|===
+| `conf t` |Pour accéder au mode configuration : (config)#
+| `int f0/1` |Pour accéder à la configuration du port FastEthernet0/1 : (config-if)#
+| `switchport trunk encapsulation dot1q` | Seulement pour le commutateur-routeur 3560
+| `switchport mode trunk` | Pour affecter ce port à tous les vlan (port 802.1q)
+| `exit` | Pour revenir au mode configuration (config)#
+|===
+
+Supprimer l'affectation d'une interface (port FastEthernet) non 'taggé' à un vlan :
+|===
+| `conf t` |Pour accéder au mode configuration : (config)#
+| `int f0/1` |Pour accéder à la configuration du port FastEthernet0/1 : (config-if)#
+| `no switchport access vlan 2` |Pour supprimer l'affectation
+| `exit` |Pour revenir au mode configuration (config)#
+|===
+
+Afficher les vlan avec les interfaces (ports) affectés (sauf les ports `802.1q/trunk`) :
+
+* `show vlan`
+
+== Configuration d'une adresse IP, passerelle par défaut, serveur DNS
+
+Affectation d'une adresse IP à l'interface virtuelle d'un vlan :
+|===
+|`conf t` |Pour accéder au mode configuration : (config)#
+| `int vlan 1` |Pour accéder à la configuration de l'interface du vlan 1 : (config-if)#
+| `ip address 10.0.0.254 255.0.0.0` |Pour affecter une adresse IP à l'interface virtuelle
+| `no shutdown` |Pour activer l’interface virtuelle du vlan 1
+| `exit` |Pour revenir au mode configuration (config)#
+|===
+
+Supprimer une adresse IP :
+
+|===
+| `conf t` |Pour accéder au mode configuration : (config)#
+| `int vlan 1` |Pour accéder à la configuration de l'interface du vlan 1 : (config-if)#
+| `no ip address` |Pour supprimer l'adresse IP.
+| `exit` |Pour revenir au mode configuration (config)#
+|===
+
+Configurer une passerelle par défaut sur un commutateur :
+
+|===
+| `conf t` | Pour accéder au mode configuration : (config)#
+| `ip default-gateway 10.0.0.1` |Pour affecter une passerelle par défaut au commutateur
+|===
+
+Configurer l’adresse IP d’un serveur DNS sur un commutateur :
+
+|===
+| `conf t` |Pour accéder au mode configuration : (config)#
+| `ip name-server 10.0.0.10`   |Pour définir l’adresse IP du serveur DNS
+|===
+
+== Test et affichage de la configuration IP du commutateur
+
+* Afficher la configuration saisie sur le commutateur :
+** `show run` Pour afficher la configuration active du routeur
+
+* Test des connexions à partir du commutateur :
+** `ping <IpPoste> ou <IpRouteur>` Pour tester la connexion IP
+
+* Vérifier la configuration IP des interfaces virtuelles (Vlan) :
+** `show ip interface brief` Pour voir un état récapitulatif des interfaces
+
+* Vérifier la configuration IP du vlan 1 :
+`show ip interface vlan1` Pour voir un état complet de l’interface virtuelle du *vlan1*
+
+== Activation du routage sur le commutateur-routeur Cisco 3560
+
+Activer le routage :
+
+|===
+| `conf  t` |Pour accéder au mode configuration : (config)#
+| `ip routing` |
+| `exit` | Pour revenir en mode privilège : #
+|===
+
+== Configuration de la table de routage du commutateur-routeur Cisco 3560
+
+* Ajouter une route statique :
+
+|===
+| `conf  t` |Pour accéder au mode configuration : (config)#
+| `ip route <AdresseReseau> masque <AdressePasserelle>`|
+| `exit` |Pour revenir en mode privilège : #
+|===
+
+* Supprimer une route statique :
+
+|===
+| `conf  t` | Pour accéder au mode configuration : (config)#
+| `no ip route <AdresseReseau> masque <AdressePasserelle>` |
+| `exit` | Pour revenir en mode privilège : #
+|===
+
+== Afficher la table de routage du commutateur-routeur Cisco 3560
+
+* Afficher toute la table de routage :
+|===
+|`sh ip route` |Pour afficher la table de routage
+|===
+
+* Afficher seulement les routes statiques de la table de routage  :
+|===
+|`sh ip route static` |Pour afficher les routes statiques
+|===
+
+
+* Afficher seulement les routes directement connectées de la table de routage :
+|===
+|`sh ip route connected` |Pour afficher la table de routage
+|===
+
+[CAUTION]
+====
+* Les routes *statiques* sont précédées d’un *S*.
+* Les routes *directement* connectées au routeur sont précédées d’un *C*.
+====
+
+== Configurer le service DHCP
+
+Voir le mode opératoire : Configuration de base d’un routeur Cisco 2901
+
+== Configurer l’agent relais DHCP sur une interface vlan du commutateur-routeur
+
+Activer l’agent relais DHCP sur une interface du commutateur-routeur :
+|===
+| `conf  t` |Pour accéder au mode configuration : (config)#
+| `int vlan1` |Pour accéder à la configuration de l’interface virtuelle vlan1 : (config-if)#
+| `ip helper-address <AdresseIPServeurDHCP>` |Pour spécifier l'adresse IP du serveur DHCPv4
+| `end`| Pour revenir en mode privilège : #
+|===
+
+Afficher les informations de l’interface :
+
+|===
+|`show ip interface vlan1`
+|===
+
+== Configurer le commutateur comme client DHCP
+
+Activer l’agent relais DHCP sur une interface du routeur :
+
+|===
+| `conf  t` | Pour accéder au mode configuration : `(config)#`
+| `int vlan1` |Pour accéder à la configuration de l’interface virtuelle vlan1 : `(config-if)#`
+| `ip address dhcp` |Pour demander une adresse IP à un serveur *DHCPv4*
+| `end` |Pour revenir en mode privilège : #
+|===
+
+Afficher les informations de l’interface :
+
+|===
+| `show ip interface vlan1confirme` | Que l'interface est activée et que l'adresse a été attribuée par un serveur *DHCPv4*.
+|===

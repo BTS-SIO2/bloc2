@@ -1,0 +1,113 @@
+= TP 1 PowerShell : Fichiers Textes
+Bauer Baptiste <cours.bauer@gmail.com>
+:description: PowerShell
+:icons: font
+:keywords: PowerShell
+:sectanchors:
+:url-repo: https://github.com/BTS-SIO2
+:chapter-number: number
+:toc:
+:experimental:
+:correction:
+
+====
+* *Objectif :*
+Exercices sur les fichiers textes
+====
+
+== Travail à faire
+
+
+=== Exercice 1
+
+Écrire un script nommé :``exo1.ps1 ``
+
+Ce script doit afficher les données de ce fichier sous cette forme (avec la commande `Write-Host`) :
+
+****
+Nom : Regnier Prénom : Daniel
+
+Nom : Ravrat Prénom : Emmanuel
+
+Nombre de nom(s) : 2
+****
+
+[IMPORTANT]
+====
+Le nombre de noms doit être affiché à la fin.
+====
+
+
+
+=== Exercice 2
+
+Reprendre le script `exercice1_et_2.ps1` de l'*exercice 1* en ajoutant un test d’existence du fichier avant la lecture.
+
+Si le fichier n'existe pas, le traitement affiche le message suivant : _Fichier exo1.txt non trouvé._
+
+Tester les deux cas.
+
+ifdef::correction[]
+[.reponse]
+****
+*Corrigé 1 et 2 :*
+[source,php]
+----
+include::../Tp01-PowerShell-FichiersTexte/scripts/exercice1_et_2.ps1[]
+----
+****
+endif::[]
+
+=== Exercice 3
+
+En utilisant les tests précédents, écrire un script nommé `exercice3.ps1`, qui demande à l’utilisateur une information et qui enregistre cette information et la date de saisie dans un fichier nommé `test2.log`.
+
+[IMPORTANT]
+====
+La date doit être placée avant l’information.
+====
+
+ifdef::correction[]
+[.reponse]
+****
+*Corrigé 3 :*
+[source,php]
+----
+include::../Tp01-PowerShell-FichiersTexte/scripts/exercice3.ps1[]
+----
+****
+endif::[]
+
+=== Exercice 4
+
+Écrire un nouveau script nommé ``exercice4.ps1``.
+
+Ce script recherche le mot erreur dans le fichier `audit.log` et affiche un message à chaque fois qu’il le trouve.
+
+ifdef::correction[]
+[.reponse]
+****
+*Corrigé 4 :*
+[source,php]
+----
+include::../Tp01-PowerShell-FichiersTexte/scripts/exercice4.ps1[]
+----
+****
+endif::[]
+
+=== Exercice 5
+
+Écrire un nouveau script nommé ``exercice5.ps1``.
+
+Ce script fait la même recherche que le script ``exercice4.ps1``, mais il affiche seulement à la fin du traitement le nombre de fois où le mot erreur est trouvé dans le fichier (mot : 1 par ligne).
+
+ifdef::correction[]
+[.reponse]
+****
+*Corrigé 5 :*
+[source,php]
+----
+include::../Tp01-PowerShell-FichiersTexte/scripts/exercice4.ps1[]
+----
+****
+endif::[]
