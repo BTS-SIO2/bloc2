@@ -1,0 +1,9 @@
+Linda;MitchellPS;VicePresidentPS;Vice-président
+Fabien;Cagniet;DirecteurPS;Directeur des RH
+Romain;François;ChefVentesPS;Chef des ventes
+Jeremy;Guyot;RepresentantPS;Représentant
+Linda;MitchellPS LM;AssistantClient1PS;Assistance clientèle (nuit)
+Baptiste;Jampy;AssistantClient2PS;Assistance clientèle (jour)
+Guillaume;Jupin;ChefComptablePS;Chef de la comptabilité
+Ramdame;Kourat;ComptablePS;Comptable
+Priscilla;Lancelin;IcomptablePS;Comptable intérimaire

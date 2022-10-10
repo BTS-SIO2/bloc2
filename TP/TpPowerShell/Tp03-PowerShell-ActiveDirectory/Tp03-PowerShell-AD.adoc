@@ -1,0 +1,115 @@
+= TP 3 PowerShell : Annuaire Active Directrory
+Bauer Baptiste <cours.bauer@gmail.com>
+:description: PowerShell
+:icons: font
+:keywords: PowerShell
+:sectanchors:
+:url-repo: https://github.com/BTS-SIO2
+:chapter-number: number
+:toc:
+:experimental:
+
+====
+* *Objectif :*
+Exercices sur l’accès à l’annuaire *Active Directory* de *Windows*.
+====
+
+== Exercice 1
+
+Modifier le script N°1 (link:script01_UO_Gr.ps1[Script01_UO_Gr.ps1]) pour l’adapter à votre annuaire *Active Directory* et créer une unité d’organisation nommée *CxExx* et un groupe *Grxx*.
+
+[IMPORTANT]
+====
+Remplacer les *X* par vos identifiants (ex : *C1E01* et *Gr01*).
+====
+
+[source,php]
+----
+include::script01_UO_Gr.ps1[]
+----
+
+== exercice 2
+
+Modifier le script N°2 (link:script02_Utilisateur_Gr.ps1[script02_Utilisateur_Gr.ps1]) pour créer le compte de *Tutin* dans l’unité d’organisation et l’affecter au groupe créé par le script précédent.
+
+[source,php]
+----
+include::script02_Utilisateur_Gr.ps1[]
+----
+
+== Exercice 3
+
+Modifier votre *script N°2* pour créer un nouveau compte à partir de vos informations personnelles et affecter ce compte au groupe `Grxx`.
+
+== Exercice 4
+
+Compléter le script N°3 (link:script03_Utilisateur.ps1[Script03_utilisateur.ps1]) pour modifier et ajouter des renseignements sur le compte *MTutin* ajouté à l'exercice 2) :
+
+* Activer le compte, _paramètre : –Enabled_
+* Chemin du dossier personnel à renseigner, *paramètre :* `-HomeDirectory`
+** Pour le chemin du *dossier personnel*, voir les comptes déjà créés, onglet `profils`. Ce chemin est de la forme (attention au nom du serveur) : `\\win2008\data\$login`
+
+* La lettre du lecteur réseau du dossier personnel à renseigner, *paramètre :*``-HomeDrive``. Mettre le lecteur `s:`.
+
+* Un script d’ouverture de session à renseigner : **paramètre : **`-ScriptPath`.
+Même s’il n’existe pas, mettre le nom de fichier : `test.cmd`
+
+* L’utilisateur doit changer son mot de passe à la première connexion,
+*paramètre :* `-ChangePasswordAtLogon`
+
+
+[NOTE]
+====
+Le dossier personnel (`-HomeDirectory`) ne sera pas créé automatiquement, il le sera si on ajoute dans le script l’instruction suivante : `New-Item $dossierperso -ItemType directory`
+====
+
+[source,php]
+----
+include::script03_Utilisateur.ps1[]
+----
+
+== Exercice 5 : Recherche d’informations dans un domaine
+
+Écrire les commandes qui permettent d’afficher les informations suivantes :
+
+*1)* Toutes les unités d’organisation du domaine,
+
+*2)* Tous les utilisateurs du domaine,
+
+*3)* Tous les ordinateurs du domaine,
+
+*4)* Tous les utilisateurs de l’unité Labo,
+Utiliser le chemin d’une `OU` dans un domaine, voir *annexe 1*
+
+*5)* Tous les groupes de l’unité *Labo*,
+Utiliser le chemin d’une `OU` dans un domaine, voir *annexe 1*
+
+*6)* Toutes les informations de l’utilisateur créé au *2)*
+Avec le paramètre `–Identity`
+
+*7)* Tous les utilisateurs dont le compte a expiré
+Test : définir une date d’expiration pour un compte de votre domaine
+
+*8)* Tous les utilisateurs dont le compte est désactivé
+Test : désactivé un compte de votre domaine
+
+*9)* Tous les utilisateurs dont le mot de passe n’expire jamais,
+
+*10)* Tous les utilisateurs dont le compte est resté inactif pendant les 10 derniers jours.
+Avec le paramètre `–TimeSpan`
+
+[source,php]
+----
+include::script05_get.ps1[]
+----
+
+== Exercice 6
+
+Compléter le script (link:script06_ebaucheAjoutCompteFichier.ps1[script06_ebaucheAjoutCompteFichier.ps1]) pour ajouter tous les utilisateurs dont les informations (_prénom ; nom_) sont contenues dans un fichier texte, avec comme séparateur le (;). Le login est composé de la première lettre du prénom ajoutée devant le nom.
+
+*Pour les tests :* Utiliser le fichier texte nommé link:Tp02PSUtilisateurs.txt[Tp02PSUtilisateurs.txt], l’unité d’organisation se nomme *LaboPS* et le groupe *GrPS*.
+
+[source,php]
+----
+include::script06_ebaucheAjoutCompteFichier.ps1[]
+----
