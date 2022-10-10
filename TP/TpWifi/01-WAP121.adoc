@@ -1,0 +1,316 @@
+= Prise en main de matériel WiFi
+Bauer Baptiste <cours.bauer@gmail.com>
+:description: WIFI.
+:icons: font
+:keywords: Bloc2
+:sectanchors:
+:url-repo: https://github.com/BTS-SIO2
+:chapter-number: number
+:sectnums:
+:toc:
+:experimental:
+:correction:
+
+====
+* *Objectif :*
+Découvrir la configuration de matériel WiFi.
+* *Condition :*
+** Le projet est réalisé par groupe de deux étudiants.
+** Le groupe utilise un point d’accès sans fils Cisco WAP121 (Wireless Access Point)
+** Deux cartes réseaux Wifi sur port USB (Cisco et/ou Netgear), deux postes sous W10 Labo
+** Manuels du point d'accès Cisco WAP121 :
+*** link:documentation/WAP121_321_AG_en.pdf[WAP121_321_AG_en.pdf]
+*** link:documentation/WAP_121_321_QSG_fr_FR.pdf[WAP_121_321_QSG_fr_FR.pdf]
+====
+
+
+*Étape 1: Connexion initiale*
+
+- Réinitialiser le point d’accès avec le bouton reset
+
+- Connecter le point d’accès sans fil à la carte réseau d’un poste.
+
+- Pour information, l’IP par défaut du point d’accès *WAP121* est `192.168.1.245 /24`
+
+- Configurer l’adresse IP de votre poste dans le même réseau IP (adresse ip compatible, mais *pas* `192.168.1.245`)
+
+- Tester la connexion du poste vers le point d’accès.
+
+- Sur le poste, lancer le navigateur et taper l'adresse suivante : http://192.168.1.245
+
+- Pour les informations de connexion au point d’accès:
+** nom d’utilisateur : *cisco*
+** mot de passe: *cisco*
+
+- Ne pas utiliser l’assistant de configuration, à la demande, changer le mot de passe en conservant : *cisco*
+
+*Étape 2: Configuration initiale*
+
+- Changer le nom du point d’accès, nouveau nom: *PA1-Groupex* (*#ou x = n° du groupe, pour tout le Tp#)*
+
+- Définir l’adresse IP statique suivante `192.168.0.1/24`
+
+- Faire les modifications sur le poste pour se reconnecter sur le point d’accès.
+
+[WARNING]
+====
+Le changement de d’adresse *IP* fait perdre la connexion avec le point d’accès pour son administration. S’il y a changement de réseau IP, il est nécessaire de reconfigurer l’IP du PC qui se connecte au PA.
+====
+
+
+*Étape 3: Canal WiFi*
+
+- Activer le WiFi et définir un canal propre à votre groupe (exemples: *1, 4, 7, 10 ou 13*)
+
+- A l’aide du menu _Status and Statistics_, afficher les informations WiFi du point d’accès (adresse Mac, Channel)
+
+*Étape 4: SSID*
+
+- Pour le nom du réseau WiFi, modifier le SSID (Service Set Identifier) pour mettre : *Groupex-wifi0*
+
+- Configurer les cartes réseaux sans fil des postes, adresses IP des deux cartes réseaux sans fil :
+
+`192.168.100.1/24` et `192.168.100.2/24`
+
+[NOTE]
+====
+il n’est pas nécessaire que les cartes WiFi soient dans le même réseau que le point d’accès.
+====
+
+- Tester la connexion entre les postes via les cartes réseaux sans fil sur le réseau `192.168.100.0/24`.
+
+- Sur le point d’accès, afficher les informations des clients connectés (capture d’écran), relever les adresses MAC.
+
+*Étape 5 : Sécurité*
+
+- Pour le nom du réseau WiFi, modifier le SSID (Service Set Identifier) pour mettre : *Groupex-wifi1*
+
+- Cacher la diffusion du SSID et configurer une protection *WPA2-Personal*
+
+- Configurer les adaptateurs sans fil pour la connexion sécurisée au PA, tester la connexion entre les deux cartes sans fil.
+
+[.question]
+**
+Question {counter:question} :
+Quelles informations faut-il saisir sur les clients WiFi ?
+**
+
+ifdef::correction[]
+[.reponse]
+****
+*Réponse {counter:reponse} :*
+Comme le SSID est masqué, il faut saisir le nom du réseau WiFi (le SSID) et pour la protection, choisir le protocole de sécurité et le mot de passe associé.
+****
+endif::[]
+
+
+
+*Étape 6 : Limitation*
+
+- Limiter à 10 le nombre de clients WiFi autorisés à se connecter au PA
+
+[.question]
+**
+Question {counter:question} :
+Conclusion sur cette limitation.
+**
+
+ifdef::correction[]
+[.reponse]
+****
+*Réponse {counter:reponse} :*
+Cette limitation permet de limiter le nombre de connexion WiFi au point d’accès et ainsi d’éviter de saturer le réseau sans fil.
+****
+endif::[]
+
+
+
+*Étape 7 : Filtrage*
+
+- Protection par adresse Mac: spécifier les adresses mac autorisées sur le réseau sans fil
+
+- Tester la connexion entre les postes via le sans fil.
+
+- Supprimer une adresse Mac de la liste et tester la NON connexion du poste correspondant.
+
+
+*Étape 8 : Isolation*
+
+- Supprimer le filtrage par adresse Mac
+
+- Interdire la communication entre tous les postes du réseau WiFi
+
+- Tester la NON connexion entre les postes du réseau sans fil.
+
+- *Ajouter* une deuxième adresse IP à la carte réseau filaire connectée au point d’accès : `192.168.100.3/24`
+
+- Tester la connexion des postes du réseau sans fil vers cette adresse IP
+
+
+[.question]
+**
+Question {counter:question} :
+*Conclusion* sur la mise en place de cette sécurité.
+**
+
+ifdef::correction[]
+[.reponse]
+****
+*Réponse {counter:reponse} :*
+Toutes les éléments connectés au réseau WiFi peuvent communiquer avec le réseau filaire via le point d’accès, mais ne peuvent pas communiquer ensemble. Cette solution est souvent utilisée dans les réseau WiFi des hôtels ou réseaux WiFi publics.
+****
+endif::[]
+
+
+
+*Étape 9 : Multiples SSID*
+
+- Ajouter un deuxième réseau Wifi avec les paramètres suivants : SSID : *Groupex-wifi2*, VLAN ID: *2*
+
+- Ajouter un troisième réseau Wifi avec les paramètres suivants : SSID : *Groupex-wifi3*, VLAN ID: *3*
+
+- Configurer les cartes réseaux WiFi, SSID: *Groupex-wifi2*, tester la connexion entre les deux postes
+
+- Modifier la configurer d’une carte réseau WiFi, SSID: *Groupex-wifi3*, tester la *NON* connexion entre les 2 postes. Sur le point d’accès, afficher les informations des clients connectés (capture d’écran).
+
+[.question]
+**
+Question {counter:question} :
+Si le PA gère plusieurs SSID/Vlan, comment doit être configuré (au niveau des vlan) le port du commutateur connecté sur ce PA ?
+**
+
+ifdef::correction[]
+[.reponse]
+****
+*Réponse {counter:reponse} :*
+Ce port doit être de type 802.1Q (taggué, trunk), pour pouvoir identifier les différents Vlan associés aux différents SSID.
+****
+endif::[]
+
+
+
+
+[.question]
+**
+Question {counter:question} :
+*Conclusion* sur la mise en place de cette configuration.
+**
+
+
+
+ifdef::correction[]
+[.reponse]
+****
+*Réponse {counter:reponse} :*
+La mise en place de plusieurs SSID permet donc de segmenter le réseau sans fil, ainsi deux postes étant connectés sur le même SSID pourront communiquer, en revanche, il est impossible pour deux postes connectés sur des SSID différents de communiquer. Les SSID sont associés à des identifiants de Vlan pour prolonger cette segmentation sur le réseau filaire.
+****
+endif::[]
+
+
+
+
+*Étape 10 : Sauvegarde de la configuration du PA*
+
+Sur le point d’accès, supprimer les SSID : *Groupex-wifi2 et Groupex-wifi3*
+
+- Faire une sauvegarde (via http) de la configuration du PA, en plaçant le fichier config.xml sur votre poste.
+
+- A l’aide de Notepad++, retrouver le nom et l’adresse IP du PA dans ce fichier de configuration (capture écran).
+
+*Étape 11 : Pont WDS (Wireless Distribution System)*
+
+Rappel de la documentation du WAP121:
+
+[NOTE]
+====
+The Wireless Distribution System (WDS) allows you to connect multiple WAP121 devices. With WDS, access points communicate with one another without wires. This capability is critical in providing a seamless experience for roaming clients and for managing multiple wireless networks.
+
+*Before you configure WDS on the WAP device, note these guidelines:*
+
+• WDS only works with Cisco WAP121 and Cisco WAP321 devices.
+
+• All Cisco WAP devices participating in a WDS link must have the following identical settings:
+
+- Radio
+
+- IEEE 802.11 Mode
+
+- Channel Bandwidth
+
+- Channel (*Auto is not recommended*)
+====
+
+*Mise en place :*
+
+- Prendre un deuxième point d’accès sans fil Cisco WAP121 (ou travailler avec un autre binôme si manquant)
+
+- Connecter le second point d’accès sans fil à la carte réseau du deuxième poste
+
+- Voir l’étape 1 pour la connexion sur le PA
+
+- Changer le nom du deuxième point d’accès, nouveau nom : *PA2-Groupex*
+
+- Configurer le mode WDS sur les deux points d’accès en respectant bien les recommandations de la documentation.
+
+- *Ajouter* une deuxième adresse IP à la carte réseau filaire connectée au deuxième point d’accès : `192.168.100.4/24`
+
+- À l’aide du menu ‘Status and Statistics’, afficher l’état de l’interface WDS (capture d’écran).
+
+- Déconnecter les cartes réseaux sans fil
+
+- À partir du premier poste (`192.168.100.3`), tester la connexion vers l’adresse IP 192.168.100.4
+
+
+[.question]
+**
+Question {counter:question} :
+*Conclusion* sur la mise en place de cette configuration.
+**
+
+ifdef::correction[]
+[.reponse]
+****
+*Réponse {counter:reponse} :*
+Cette solution permet d’étendre la zone d’un réseau sans fil ou permet de relier deux réseaux filaires via la liaison des deux points d’accès.
+****
+endif::[]
+
+
+
+
+
+*Étape 12 : ‘Single Point Setup’*
+
+[.question]
+**
+Question {counter:question} :
+En vous aidant de la documentation, expliquer le principe du mode ‘Single Point Setup’ et son intérêt pour la configuration et les mises à jour.
+**
+
+ifdef::correction[]
+[.reponse]
+****
+*Réponse {counter:reponse} :*
+Le principe est de configurer un seul point d’accès et de répliquer automatiquement cette configuration sur d’autres points d’accès. L’intérêt est de diminuer le travail de l’administrateur pour la configuration initiale ou les mises à jour du réseau WiFi.
+****
+endif::[]
+
+
+
+
+[.question]
+**
+Question {counter:question} :
+Quelles sont les limites de ce mode avec le point d’accès *Cisco WAP121*?
+**
+
+ifdef::correction[]
+[.reponse]
+****
+*Réponse {counter:reponse} :*
+Tous les points d’accès doivent être du même modèle et le nombre est limité à 4 avec ce PA.
+****
+endif::[]
+
+
+
