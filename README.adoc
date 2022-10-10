@@ -1,13 +1,22 @@
 = Cahier de texte SIO2 - [2022/2023]
 
-== Semaine 6
+== Semaine 7
+=== 10/10/2022
 
+- TD-SSL.doc avec annexes + corrections
+- Tp07-SSL.adoc
+
+
+
+
+== Semaine 6
+=== 07/10/2022
+- TP WIFI
 === 03/10/2022
 - Finir *TpW2016-06-DNS.doc*
 - TP Packet Tracer : `Tp02_DHCP-DNS.adoc`
 - TP Powershell : `Tp01-PowerShell-FichiersTexte.adoc`
 - TP VLAN01  : `Tp02CiscoVlan01.adoc`
-
 ****
 *Documents* :
 
@@ -16,6 +25,7 @@
 * link:./TP/TpPowerShell/Tp01-PowerShell-FichiersTexte/scripts/[PowerShell Correction]
 * link:./TP/Tpcisco/Tp02_Vlan/Tp02CiscoVlan01.adoc[Tp02CiscoVlan01.adoc]
 * link:./TP/Tpcisco/Tp02_Vlan/laboVlan1.pka[laboVlan1.pka]
+* link:./TP/Tpcisco/Tp03_Wifi/Tp03_Wifi.adoc[Tp03_Wifi.adoc]
 
 ****
 == Semaine 5
