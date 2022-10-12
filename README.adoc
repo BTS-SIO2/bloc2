@@ -2,11 +2,14 @@
 
 == Semaine 7
 
-=== 14/10/2022
+=== 12/10/2022
 
 - Cours : Bilan sur le protocole DNS : link:../cours/bloc2/02-DNS.adoc[bloc2/02-DNS.adoc]
-- Diaporama sur le dialogue DNS sur Internet : link:bloc2/02-DNSInternet.ppt[02-DNSInternet.ppt]
-- Correction capture des trames : link:bloc2/01-TpCapture.ppt[01-TpCapture.ppt]
+- Etude de la vidéo : https://www.youtube.com/watch?v=PS0UppB3-fg
+- rédiger une note de synthèse concernant : DNSSEC
+
+
+- Finir link:TP/TpW2016/Tp07-SSL.adoc[Tp07-SSL.adoc]
 
 === 10/10/2022
 
