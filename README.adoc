@@ -5,6 +5,7 @@
 === 12/10/2022
 
 - Cours : Bilan sur le protocole DNS : link:../cours/bloc2/02-DNS.adoc[bloc2/02-DNS.adoc]
+- Cours : Bilan/Correction SSL
 - Etude de la vidéo : https://www.youtube.com/watch?v=PS0UppB3-fg
 - rédiger une note de synthèse concernant : DNSSEC
 
